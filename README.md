@@ -1,7 +1,6 @@
 
 # Stop Explaining Inventory Loss. Start Locating It.
 
-![License](https://img.shields.io/badge/license-MIT-green)
 ![Platform](https://img.shields.io/badge/platform-Excel%20%7C%20HTML-blue)
 ![Type](https://img.shields.io/badge/type-Decision%20Support-orange)
 
