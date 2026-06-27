@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi-Node Inventory Reconciliation &amp; Loss Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c-primary:   #051C2C;
+  --c-accent:    #2251FF;
+  --c-bg:        #F5F5F2;
+  --c-surface:   #FFFFFF;
+  --c-muted:     #888888;
+  --c-body:      #1A1A2E;
+  --c-border:    #E8E8E6;
+  --c-neg:       #D32F2F;
+  --c-neg-bg:    rgba(211,47,47,0.05);
+  --c-neg-light: rgba(211,47,47,0.10);
+  --c-warn:      #8B6000;
+  --c-warn-bg:   rgba(255,193,7,0.07);
+  --c-ok:        #1B5E20;
+  --c-ok-bg:     rgba(0,200,83,0.07);
+  --c-input:     #FFFDE7;
+  --c-insight:   rgba(34,81,255,0.04);
+  --c-th-bg:     rgba(5,28,44,0.04);
+  --c-th-sep:    rgba(5,28,44,0.12);
+  --nav-bg:      #FFFFFF;
+  --nav-border:  #E8E8E6;
+  --nav-text:    #051C2C;
+  --nav-dim:     rgba(5,28,44,0.38);
+
+  --f-head: 'EB Garamond', Georgia, serif;
+  --f-body: 'Noto Sans SC', sans-serif;
+
+  --sz-title: 26px;
+  --sz-sect:  17px;
+  --sz-kpi:   34px;
+  --sz-th:    11px;
+  --sz-body:  13px;
+  --sz-label: 11px;
+
+  --tr-display: -0.03em;
+  --tr-head:    -0.02em;
+  --tr-label:    0.06em;
+
+  --sp-xs:  4px;  --sp-sm:  8px;
+  --sp-md: 16px;  --sp-lg: 24px;
+  --sp-xl: 40px;  --sp-2xl:64px;
+
+  --r-sm:  6px; --r-md: 10px;
+  --r-lg: 14px; --r-pill: 100px;
+
+  --sh-sm: 0 1px 2px rgba(5,28,44,.04), 0 2px 8px rgba(5,28,44,.06);
+  --sh-md: 0 2px 4px rgba(5,28,44,.04), 0 8px 24px rgba(5,28,44,.08),
+           0 1px 0px rgba(255,255,255,.6) inset;
+  --sh-lg: 0 4px 8px rgba(5,28,44,.06), 0 16px 48px rgba(5,28,44,.14);
+  --sh-nav:0 1px 3px rgba(5,28,44,.06), 0 1px 0px rgba(5,28,44,.08);
+
+  --ease: cubic-bezier(.25,.46,.45,.94);
+  --spring: cubic-bezier(.34,1.56,.64,1);
+  --dur-f: 150ms; --dur-n: 250ms; --dur-s: 420ms;
+  --nav-h: 56px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f-body);
+  font-size: var(--sz-body);
+  color: var(--c-body);
+  background: var(--c-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ─── NAV ─────────────────────────────────────────────────────────────── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--nav-h);
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--nav-border);
+  box-shadow: var(--sh-nav);
+  display: flex; align-items: center;
+}
+.nav-inner {
+  max-width: 1440px; width: 100%; margin: 0 auto;
+  padding: 0 var(--sp-xl);
+  display: flex; align-items: center; gap: var(--sp-xl);
+}
+.nav-brand {
+  font-family: var(--f-head); font-size: 14px; font-weight: 700;
+  color: var(--c-primary); letter-spacing: var(--tr-label);
+  white-space: nowrap; flex-shrink: 0;
+}
+.nav-tabs { display: flex; align-items: stretch; height: var(--nav-h); gap: 2px; }
+.nav-tab {
+  height: 100%; padding: 0 14px;
+  font-family: var(--f-body); font-size: 11px; font-weight: 500;
+  letter-spacing: var(--tr-label); text-transform: uppercase;
+  color: var(--nav-dim); background: none; border: none;
+  border-bottom: 3px solid transparent; cursor: pointer;
+  transition: color var(--dur-f) var(--ease),
+              border-color var(--dur-f) var(--ease);
+  white-space: nowrap;
+}
+.nav-tab:hover { color: var(--c-primary); }
+.nav-tab.active { color: var(--c-primary); border-bottom-color: var(--c-accent); font-weight: 600; }
+
+/* ─── PAGES ────────────────────────────────────────────────────────────── */
+.page { display: none; }
+.page.active { display: block; animation: fadeIn var(--dur-n) var(--ease); }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+.pw { max-width: 1440px; margin: 0 auto; padding: var(--sp-xl); }
+
+/* ─── PAGE HEADER ─────────────────────────────────────────────────────── */
+.page-title {
+  font-family: var(--f-head); font-size: var(--sz-title); font-weight: 700;
+  color: var(--c-primary); letter-spacing: var(--tr-display);
+  margin-bottom: var(--sp-sm);
+}
+.page-sub {
+  font-size: var(--sz-body); color: var(--c-muted);
+  margin-bottom: var(--sp-xl);
+}
+.page-sub strong { color: var(--c-neg); font-weight: 500; }
+
+/* ─── SECTION ─────────────────────────────────────────────────────────── */
+.sect-title {
+  font-family: var(--f-head); font-size: var(--sz-sect); font-weight: 600;
+  color: var(--c-primary); letter-spacing: var(--tr-head);
+  margin-bottom: var(--sp-lg);
+}
+.sect-title.alert { color: var(--c-neg); }
+
+/* ─── KPI GRID ────────────────────────────────────────────────────────── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-md);
+  margin-bottom: var(--sp-xl);
+}
+.kpi-card {
+  background: var(--c-surface);
+  border-radius: var(--r-lg); padding: var(--sp-lg);
+  box-shadow: var(--sh-md);
+  transition: transform var(--dur-f) var(--ease), box-shadow var(--dur-f) var(--ease);
+  cursor: default;
+}
+.kpi-card:hover { transform: translateY(-2px); box-shadow: var(--sh-lg); }
+.kpi-label {
+  font-size: var(--sz-label); font-weight: 600;
+  letter-spacing: var(--tr-label); text-transform: uppercase;
+  color: var(--c-muted); margin-bottom: var(--sp-sm);
+}
+.kpi-val {
+  font-family: var(--f-head); font-size: var(--sz-kpi); font-weight: 700;
+  color: var(--c-primary); letter-spacing: var(--tr-display);
+  line-height: 1; margin-bottom: var(--sp-xs);
+}
+.kpi-val.alert { color: var(--c-neg); }
+.kpi-sub { font-size: var(--sz-label); color: var(--c-muted); }
+
+/* ─── CHARTS ZONE ─────────────────────────────────────────────────────── */
+.charts-zone {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--sp-md);
+  margin-bottom: var(--sp-xl);
+}
+.chart-card {
+  background: var(--c-surface); border-radius: var(--r-lg);
+  padding: var(--sp-lg); box-shadow: var(--sh-md);
+}
+.chart-title {
+  font-family: var(--f-head); font-size: 14px; font-weight: 600;
+  color: var(--c-primary); margin-bottom: var(--sp-lg);
+}
+
+/* bar chart */
+.bar-row { display: flex; align-items: center; gap: var(--sp-md); margin-bottom: 9px; }
+.bar-sku { font-size: 11px; font-weight: 500; color: var(--c-primary); width: 122px; flex-shrink: 0; text-align: right; }
+.bar-track { flex: 1; height: 18px; background: var(--c-bg); border-radius: var(--r-sm); overflow: hidden; }
+.bar-fill {
+  height: 100%; border-radius: var(--r-sm);
+  background: var(--c-accent); width: 0;
+  transition: width .9s var(--ease);
+}
+.bar-fill.breach { background: var(--c-neg); }
+.bar-amt { font-size: 11px; font-weight: 600; color: var(--c-body); width: 54px; flex-shrink: 0; text-align: right; font-variant-numeric: tabular-nums; }
+
+/* donut */
+.donut-wrap { display: flex; flex-direction: column; align-items: center; }
+.donut-ring { margin-bottom: var(--sp-md); }
+.donut-legend { width: 100%; }
+.leg-item { display: flex; align-items: center; gap: var(--sp-sm); margin-bottom: var(--sp-sm); }
+.leg-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.leg-lbl { flex: 1; font-size: var(--sz-label); color: var(--c-muted); }
+.leg-val { font-size: var(--sz-label); font-weight: 600; color: var(--c-body); font-variant-numeric: tabular-nums; }
+
+/* ─── INSIGHT BLOCK ───────────────────────────────────────────────────── */
+.insight {
+  background: var(--c-insight);
+  border-left: 3px solid var(--c-accent);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  padding: var(--sp-md) var(--sp-lg);
+  margin-bottom: var(--sp-xl);
+}
+.insight-lbl {
+  font-size: var(--sz-label); font-weight: 600;
+  letter-spacing: var(--tr-label); text-transform: uppercase;
+  color: var(--c-accent); margin-bottom: var(--sp-sm);
+}
+.insight p { font-size: var(--sz-body); line-height: 1.7; }
+
+/* ─── INPUT NOTE ──────────────────────────────────────────────────────── */
+.input-note {
+  background: var(--c-input);
+  border-left: 3px solid var(--c-accent);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: var(--sp-sm) var(--sp-md);
+  margin-bottom: var(--sp-lg);
+  font-size: var(--sz-body); color: var(--c-body);
+}
+
+/* ─── TABLE ───────────────────────────────────────────────────────────── */
+.tbl-wrap {
+  background: var(--c-surface); border-radius: var(--r-lg);
+  box-shadow: var(--sh-md); overflow: hidden;
+  margin-bottom: var(--sp-xl);
+}
+.tbl-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+thead tr { background: var(--c-th-bg); }
+th {
+  font-family: var(--f-body); font-size: var(--sz-th); font-weight: 600;
+  letter-spacing: var(--tr-label); text-transform: uppercase;
+  color: var(--c-primary); padding: 13px var(--sp-md);
+  border-bottom: 2px solid var(--c-th-sep); white-space: nowrap;
+  text-align: left;
+}
+th.r { text-align: right; }
+td {
+  padding: 10px var(--sp-md); font-size: var(--sz-body);
+  color: var(--c-body); border-bottom: 1px solid var(--c-border);
+}
+td.r   { text-align: right; font-variant-numeric: tabular-nums; }
+td.sku { font-weight: 600; color: var(--c-primary); font-size: 11.5px; white-space: nowrap; }
+td.dim { color: var(--c-muted); font-size: 11px; }
+
+tr:nth-child(odd)  td { background: var(--c-bg); }
+tr:nth-child(even) td { background: var(--c-surface); }
+tr:last-child td   { border-bottom: none; }
+
+tr.r-breach td          { background: var(--c-neg-bg)  !important; }
+tr.r-breach td.sla-val  { color: var(--c-neg); font-weight: 600; }
+tr.r-thresh td          { background: var(--c-warn-bg) !important; }
+tr.r-thresh td.sla-val  { color: var(--c-warn); font-weight: 600; }
+tr.r-bal    td.sla-val  { color: var(--c-ok); font-weight: 600; }
+
+tr.calc-row { cursor: pointer; }
+tr.calc-row:hover td { background: rgba(34,81,255,.035) !important; }
+
+.tbl-totals td {
+  background: var(--c-th-bg) !important;
+  font-weight: 700; color: var(--c-primary);
+  border-top: 2px solid var(--c-th-sep);
+}
+
+/* ─── BADGES ──────────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 10px; border-radius: var(--r-pill);
+  font-size: 11px; font-weight: 600; white-space: nowrap;
+}
+.badge-breach    { background: var(--c-neg-light); color: var(--c-neg); }
+.badge-threshold { background: rgba(255,193,7,.18); color: var(--c-warn); }
+.badge-balanced  { background: var(--c-ok-bg); color: var(--c-ok); }
+.badge-ok        { background: rgba(5,28,44,.07); color: var(--c-muted); }
+
+/* ─── DISC BAR ────────────────────────────────────────────────────────── */
+.disc-bar { display: flex; align-items: center; gap: 6px; }
+.disc-track { flex: 1; height: 4px; background: var(--c-border); border-radius: 2px; overflow: hidden; }
+.disc-fill  { height: 100%; border-radius: 2px; background: var(--c-accent); }
+.disc-fill.red { background: var(--c-neg); }
+.disc-pct { font-size: 11px; color: var(--c-muted); font-variant-numeric: tabular-nums; width: 38px; text-align: right; }
+
+/* ─── CATEGORY TAG ────────────────────────────────────────────────────── */
+.tag {
+  display: inline-flex; align-items: center;
+  padding: 2px 8px; border-radius: var(--r-pill);
+  font-size: var(--sz-label); font-weight: 500;
+  background: rgba(5,28,44,.07); color: var(--c-primary);
+}
+
+/* ─── FORMULA KEY ─────────────────────────────────────────────────────── */
+.formula-key {
+  font-family: 'Courier New', monospace; font-size: 12px;
+  line-height: 2.2; color: var(--c-body);
+}
+
+/* ─── TRACE PANEL ─────────────────────────────────────────────────────── */
+.overlay {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; align-items: stretch; justify-content: flex-end;
+  pointer-events: none;
+}
+.overlay.open { pointer-events: all; }
+.overlay-bg {
+  position: absolute; inset: 0;
+  background: rgba(5,28,44,.18);
+  opacity: 0; transition: opacity var(--dur-s) var(--ease);
+}
+.overlay.open .overlay-bg { opacity: 1; }
+.trace-panel {
+  position: relative; z-index: 1;
+  width: 420px; max-height: 100%;
+  background: var(--c-surface);
+  box-shadow: var(--sh-lg);
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform var(--dur-s) cubic-bezier(.2,.8,.4,1);
+}
+.overlay.open .trace-panel { transform: none; }
+
+.trace-hdr {
+  position: sticky; top: 0; background: var(--c-surface);
+  padding: var(--sp-lg);
+  border-bottom: 1px solid var(--c-border);
+  display: flex; justify-content: space-between; align-items: center;
+  z-index: 1;
+}
+.trace-hdr-title {
+  font-family: var(--f-head); font-size: 16px; font-weight: 700;
+  color: var(--c-primary); letter-spacing: var(--tr-head);
+}
+.trace-close {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--c-bg); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; color: var(--c-muted);
+  transition: background var(--dur-f) var(--ease);
+}
+.trace-close:hover { background: var(--c-border); }
+.trace-body { padding: var(--sp-lg); }
+
+.trace-step { margin-bottom: var(--sp-lg); }
+.step-lbl {
+  font-size: var(--sz-label); font-weight: 600;
+  letter-spacing: var(--tr-label); text-transform: uppercase;
+  color: var(--c-muted); margin-bottom: var(--sp-xs);
+}
+.step-formula {
+  font-family: 'Courier New', monospace; font-size: 11px;
+  color: var(--c-accent); background: var(--c-insight);
+  border: 1px solid rgba(34,81,255,.12);
+  border-radius: var(--r-sm); padding: var(--sp-sm) var(--sp-md);
+  margin-bottom: 6px; line-height: 1.7;
+}
+.step-result { font-size: var(--sz-body); font-weight: 600; color: var(--c-primary); }
+.step-result.loss { color: var(--c-neg); }
+.step-eval {
+  margin-top: var(--sp-sm);
+  padding: var(--sp-sm) var(--sp-md);
+  border-radius: var(--r-sm);
+  font-size: var(--sz-body);
+}
+.step-eval.breach { background: var(--c-neg-bg); color: var(--c-neg); }
+.step-eval.ok     { background: var(--c-ok-bg); color: var(--c-ok); }
+.trace-divider { height: 1px; background: var(--c-border); margin: var(--sp-md) 0; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-brand">INVENTORY&nbsp;TOOL</span>
+    <div class="nav-tabs">
+      <button class="nav-tab active" data-tab="dash">DASHBOARD</button>
+      <button class="nav-tab" data-tab="config">CONFIG</button>
+      <button class="nav-tab" data-tab="shopify">SHOPIFY</button>
+      <button class="nav-tab" data-tab="wms">WMS</button>
+      <button class="nav-tab" data-tab="tpl">3PL</button>
+      <button class="nav-tab" data-tab="calc">CALC ENGINE</button>
+    </div>
+  </div>
+</nav>
+
+<div id="tab-dash"   class="page active"></div>
+<div id="tab-config" class="page"></div>
+<div id="tab-shopify"class="page"></div>
+<div id="tab-wms"    class="page"></div>
+<div id="tab-tpl"    class="page"></div>
+<div id="tab-calc"   class="page"></div>
+
+<!-- FORMULA TRACE PANEL -->
+<div class="overlay" id="overlay">
+  <div class="overlay-bg" onclick="closeTrace()"></div>
+  <div class="trace-panel" id="trace-panel"></div>
+</div>
+
+<script>
+/* ═══════════════════ DATA ═══════════════════ */
+const CFG = [
+  { sku:"TSHIRT-001",    name:"Classic Cotton T-Shirt",   cat:"Apparel",     cost:15,  slaQty:10, slaPct:0.030 },
+  { sku:"PANTS-002",     name:"Slim Fit Chinos",           cat:"Apparel",     cost:35,  slaQty:5,  slaPct:0.030 },
+  { sku:"JACKET-003",    name:"Winter Parka",              cat:"Apparel",     cost:89,  slaQty:4,  slaPct:0.050 },
+  { sku:"WATCH-004",     name:"Minimalist Watch",          cat:"Accessories", cost:125, slaQty:3,  slaPct:0.020 },
+  { sku:"BAG-005",       name:"Canvas Tote Bag",           cat:"Accessories", cost:22,  slaQty:8,  slaPct:0.020 },
+  { sku:"SHOE-006",      name:"Running Sneakers",          cat:"Footwear",    cost:65,  slaQty:5,  slaPct:0.030 },
+  { sku:"HAT-007",       name:"Baseball Cap",              cat:"Accessories", cost:12,  slaQty:15, slaPct:0.020 },
+  { sku:"BELT-008",      name:"Leather Belt",              cat:"Accessories", cost:28,  slaQty:8,  slaPct:0.020 },
+  { sku:"PHONE-009",     name:"Protective Phone Case",     cat:"Electronics", cost:18,  slaQty:12, slaPct:0.015 },
+  { sku:"HEADPHONE-010", name:"Wireless Headphones",       cat:"Electronics", cost:75,  slaQty:3,  slaPct:0.030 },
+];
+
+const SHOPIFY = [
+  { sku:"TSHIRT-001",    title:"Classic Cotton T-Shirt",  avail:145, onHand:200 },
+  { sku:"PANTS-002",     title:"Slim Fit Chinos",          avail:72,  onHand:95  },
+  { sku:"JACKET-003",    title:"Winter Parka",             avail:38,  onHand:50  },
+  { sku:"WATCH-004",     title:"Minimalist Watch",         avail:25,  onHand:30  },
+  { sku:"BAG-005",       title:"Canvas Tote Bag",          avail:180, onHand:210 },
+  { sku:"SHOE-006",      title:"Running Sneakers",         avail:88,  onHand:110 },
+  { sku:"HAT-007",       title:"Baseball Cap",             avail:320, onHand:350 },
+  { sku:"BELT-008",      title:"Leather Belt",             avail:95,  onHand:120 },
+  { sku:"PHONE-009",     title:"Protective Phone Case",    avail:250, onHand:280 },
+  { sku:"HEADPHONE-010", title:"Wireless Headphones",      avail:42,  onHand:55  },
+];
+
+const WMS = [
+  { sku:"TSHIRT-001",    loc:"BIN-A1",   phys:195, alloc:55 },
+  { sku:"PANTS-002",     loc:"BIN-B2",   phys:88,  alloc:23 },
+  { sku:"JACKET-003",    loc:"BIN-C1",   phys:47,  alloc:12 },
+  { sku:"WATCH-004",     loc:"SAFE-01",  phys:30,  alloc:5  },
+  { sku:"BAG-005",       loc:"BIN-D3",   phys:208, alloc:30 },
+  { sku:"SHOE-006",      loc:"BIN-E1",   phys:110, alloc:22 },
+  { sku:"HAT-007",       loc:"BIN-F2",   phys:345, alloc:30 },
+  { sku:"BELT-008",      loc:"BIN-G1",   phys:115, alloc:25 },
+  { sku:"PHONE-009",     loc:"SHELF-01", phys:278, alloc:30 },
+  { sku:"HEADPHONE-010", loc:"SAFE-02",  phys:52,  alloc:13 },
+];
+
+const PL3 = [
+  { code:"TSHIRT-001",    total:198, dmg:5,  avail:193 },
+  { code:"PANTS-002",     total:93,  dmg:3,  avail:90  },
+  { code:"JACKET-003",    total:49,  dmg:2,  avail:47  },
+  { code:"WATCH-004",     total:30,  dmg:0,  avail:30  },
+  { code:"BAG-005",       total:209, dmg:8,  avail:201 },
+  { code:"SHOE-006",      total:108, dmg:5,  avail:103 },
+  { code:"HAT-007",       total:348, dmg:10, avail:338 },
+  { code:"BELT-008",      total:116, dmg:3,  avail:113 },
+  { code:"PHONE-009",     total:279, dmg:7,  avail:272 },
+  { code:"HEADPHONE-010", total:53,  dmg:2,  avail:51  },
+];
+
+/* ═══════════════════ CALC ENGINE ═══════════════════ */
+const norm = s => s.toUpperCase().trim();
+
+function computeCalc() {
+  return CFG.map((cfg, idx) => {
+    const sh  = SHOPIFY.find(r => norm(r.sku)  === norm(cfg.sku)) || {};
+    const wms = WMS.find(r => norm(r.sku)       === norm(cfg.sku)) || {};
+    const p3  = PL3.find(r => norm(r.code)      === norm(cfg.sku)) || {};
+
+    const onHand  = sh.onHand  || 0;
+    const wmsPhys = wms.phys   || 0;
+    const pl3Phys = p3.total   || 0;
+
+    const varWMS  = onHand - wmsPhys;
+    const var3PL  = onHand - pl3Phys;
+    const lossWMS = varWMS > 0 ? varWMS * cfg.cost : 0;
+    const loss3PL = var3PL > 0 ? var3PL * cfg.cost : 0;
+    const total   = lossWMS + loss3PL;
+    const maxVar  = Math.max(Math.abs(varWMS), Math.abs(var3PL));
+    const disc    = onHand > 0 ? maxVar / onHand : 0;
+
+    let status;
+    if      (disc  > cfg.slaPct) status = "SLA Breach";
+    else if (maxVar > cfg.slaQty) status = "Threshold Breach";
+    else if (varWMS === 0 && var3PL === 0) status = "Balanced";
+    else                          status = "Acceptable Variance";
+
+    return {
+      sku:cfg.sku, name:cfg.name, cat:cfg.cat, cost:cfg.cost,
+      slaQty:cfg.slaQty, slaPct:cfg.slaPct,
+      onHand, wmsPhys, pl3Phys,
+      varWMS, var3PL, lossWMS, loss3PL, total, disc, status,
+      _cfg:cfg, _sh:sh, _wms:wms, _p3:p3,
+      _row: idx + 9     // matching Excel row number
+    };
+  });
+}
+
+const CALC = computeCalc();
+
+/* ═══════════════════ AGGREGATES ═══════════════════ */
+const totalSKUs     = CALC.length;
+const totalVar      = CALC.reduce((s,r) => s + Math.abs(r.varWMS) + Math.abs(r.var3PL), 0);
+const totalExposure = CALC.reduce((s,r) => s + r.total, 0);
+const wmsTotal      = CALC.reduce((s,r) => s + r.lossWMS, 0);
+const pl3Total      = CALC.reduce((s,r) => s + r.loss3PL, 0);
+const totalOnHand   = CALC.reduce((s,r) => s + r.onHand, 0);
+const totalVarWMS   = CALC.reduce((s,r) => s + Math.abs(r.varWMS), 0);
+const accuracy      = totalOnHand > 0 ? 1 - totalVarWMS / totalOnHand : 1;
+const breachCount   = CALC.filter(r => r.status === "SLA Breach").length;
+
+/* ═══════════════════ FORMATTERS ═══════════════════ */
+const f$  = v => '$' + v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const fN  = v => v.toLocaleString('en-US');
+const fP  = v => (v*100).toFixed(1)+'%';
+const fV  = v => (v>0?'+':'')+v;
+
+/* ═══════════════════ BADGE ═══════════════════ */
+function badge(s) {
+  const map = {
+    "SLA Breach":        `<span class="badge badge-breach">● SLA Breach</span>`,
+    "Threshold Breach":  `<span class="badge badge-threshold">◈ Threshold Breach</span>`,
+    "Balanced":          `<span class="badge badge-balanced">✓ Balanced</span>`,
+    "Acceptable Variance":`<span class="badge badge-ok">— Acceptable</span>`,
+  };
+  return map[s] || `<span class="badge badge-ok">${s}</span>`;
+}
+
+/* ═══════════════════ ROW CLASS ═══════════════════ */
+function rowClass(s) {
+  if (s==="SLA Breach")       return "calc-row r-breach";
+  if (s==="Threshold Breach") return "calc-row r-thresh";
+  if (s==="Balanced")         return "calc-row r-bal";
+  return "calc-row";
+}
+
+/* ═══════════════════ DISC BAR ═══════════════════ */
+function discBar(disc, slaPct, breach) {
+  const ref = slaPct * 2 || 0.01;
+  const pct = Math.min(disc / ref * 100, 100).toFixed(0);
+  return `<div class="disc-bar">
+    <div class="disc-track"><div class="disc-fill${breach?' red':''}" style="width:${pct}%"></div></div>
+    <span class="disc-pct">${fP(disc)}</span>
+  </div>`;
+}
+
+/* ═══════════════════ ANIMATION ═══════════════════ */
+function animCounter(el, target, fmt, dur=900) {
+  const t0 = performance.now();
+  const tick = now => {
+    const p = Math.min((now-t0)/dur, 1);
+    const e = 1 - Math.pow(1-p, 3);
+    el.textContent = fmt(target * e);
+    if (p<1) requestAnimationFrame(tick);
+    else el.textContent = fmt(target);
+  };
+  requestAnimationFrame(tick);
+}
+
+function runKPIAnim() {
+  const e1 = document.getElementById('kv1');
+  const e2 = document.getElementById('kv2');
+  const e3 = document.getElementById('kv3');
+  const e4 = document.getElementById('kv4');
+  if (e1) animCounter(e1, totalSKUs,     v => Math.round(v).toString(), 500);
+  if (e2) animCounter(e2, totalVar,      v => Math.round(v).toLocaleString(), 700);
+  if (e3) animCounter(e3, totalExposure, v => '$'+v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}), 900);
+  if (e4) animCounter(e4, accuracy*100,  v => v.toFixed(1)+'%', 900);
+}
+
+function runBarAnim() {
+  document.querySelectorAll('.bar-fill[data-w]').forEach(el => {
+    el.style.width = el.dataset.w + '%';
+  });
+}
+
+function runDonutAnim() {
+  const circ = 2 * Math.PI * 52;
+  const wmsArc = circ * (wmsTotal / totalExposure);
+  const pl3Arc = circ - wmsArc;
+
+  const w = document.getElementById('donut-wms');
+  const p = document.getElementById('donut-pl3');
+  if (!w || !p) return;
+
+  // animate WMS stroke
+  w.style.transition = 'stroke-dasharray 1.1s cubic-bezier(.25,.46,.45,.94)';
+  w.setAttribute('stroke-dasharray', `${wmsArc.toFixed(2)} ${pl3Arc.toFixed(2)}`);
+
+  setTimeout(() => {
+    p.style.transition = 'stroke-dasharray 1s cubic-bezier(.25,.46,.45,.94)';
+    p.setAttribute('stroke-dasharray', `${pl3Arc.toFixed(2)} ${wmsArc.toFixed(2)}`);
+  }, 120);
+}
+
+/* ═══════════════════ RENDER: DASHBOARD ═══════════════════ */
+function renderDash() {
+  const sorted = [...CALC].sort((a,b) => b.total - a.total);
+  const maxLoss = sorted[0].total;
+  const circ = 2 * Math.PI * 52;
+
+  const breachRows = CALC.filter(r => r.status==="SLA Breach" || r.status==="Threshold Breach")
+                         .sort((a,b) => b.total - a.total);
+
+  document.getElementById('tab-dash').innerHTML = `
+<div class="pw">
+  <h1 class="page-title">Multi-Node Inventory Reconciliation  |  Loss Analysis Dashboard</h1>
+  <p class="page-sub">${totalSKUs} active SKUs &nbsp;·&nbsp; 3 nodes (Shopify, WMS, 3PL) &nbsp;·&nbsp;
+    <strong>${breachCount} SLA breach${breachCount!==1?'es':''} detected</strong></p>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Total Reconciled SKUs</div>
+      <div class="kpi-val" id="kv1">0</div>
+      <div class="kpi-sub">Active SKUs under analysis</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Total Inventory Variance</div>
+      <div class="kpi-val" id="kv2">0</div>
+      <div class="kpi-sub">Unit discrepancies — all nodes</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Total Financial Exposure</div>
+      <div class="kpi-val alert" id="kv3">$0.00</div>
+      <div class="kpi-sub">Aggregate shrinkage cost (USD)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">System Accuracy Rate</div>
+      <div class="kpi-val" id="kv4">0%</div>
+      <div class="kpi-sub">WMS vs. Shopify match rate</div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-lbl">Analysis Summary</div>
+    <p>
+      <strong>${breachCount} SKUs are in SLA Breach</strong> — PANTS-002, JACKET-003, BELT-008, and HEADPHONE-010 each exceed their per-SKU discrepancy % threshold.
+      HEADPHONE-010 is the highest single-SKU loss at <strong>${f$(375)}</strong>.
+      WMS accounts for <strong>${Math.round(wmsTotal/totalExposure*100)}%</strong> of total financial exposure
+      (${f$(wmsTotal)}), pointing to internal warehouse control as the primary root-cause node.
+      Immediate audit recommended for BELT-008 (${fP(CALC.find(r=>r.sku==='BELT-008').disc)} disc)
+      and HEADPHONE-010 (${fP(CALC.find(r=>r.sku==='HEADPHONE-010').disc)} disc).
+    </p>
+  </div>
+
+  <div class="charts-zone">
+    <!-- Bar Chart -->
+    <div class="chart-card">
+      <div class="chart-title">Top 10 SKUs by Financial Loss</div>
+      ${sorted.map(r => {
+        const pct = maxLoss>0 ? (r.total/maxLoss*100).toFixed(1) : 0;
+        const isBreach = r.status==="SLA Breach";
+        return `<div class="bar-row">
+          <span class="bar-sku">${r.sku}</span>
+          <div class="bar-track"><div class="bar-fill${isBreach?' breach':''}"
+            data-w="${pct}" style="width:0"></div></div>
+          <span class="bar-amt">${r.total>0?f$(r.total):'—'}</span>
+        </div>`;
+      }).join('')}
+    </div>
+
+    <!-- Donut -->
+    <div class="chart-card">
+      <div class="chart-title">Loss Distribution by Node</div>
+      <div class="donut-wrap">
+        <svg class="donut-ring" viewBox="0 0 140 140" width="158" height="158">
+          <!-- track -->
+          <circle cx="70" cy="70" r="52" fill="none"
+            stroke="#E8E8E6" stroke-width="20"/>
+          <!-- WMS arc (brand blue) — animated from 0 -->
+          <circle id="donut-wms" cx="70" cy="70" r="52" fill="none"
+            stroke="#2251FF" stroke-width="20"
+            stroke-dasharray="0 ${circ.toFixed(2)}"
+            transform="rotate(-90 70 70)"/>
+          <!-- 3PL arc (deep navy) — positioned after WMS -->
+          <circle id="donut-pl3" cx="70" cy="70" r="52" fill="none"
+            stroke="#051C2C" stroke-width="20"
+            stroke-dasharray="0 ${circ.toFixed(2)}"
+            stroke-dashoffset="-${(circ*(wmsTotal/totalExposure)).toFixed(2)}"
+            transform="rotate(-90 70 70)"/>
+          <!-- center label -->
+          <text x="70" y="65" text-anchor="middle"
+            font-family="EB Garamond, serif" font-size="11" font-weight="700"
+            fill="#051C2C">${f$(totalExposure)}</text>
+          <text x="70" y="79" text-anchor="middle"
+            font-family="Noto Sans SC, sans-serif" font-size="9"
+            fill="#888888">Total Exposure</text>
+        </svg>
+        <div class="donut-legend">
+          <div class="leg-item">
+            <div class="leg-dot" style="background:#2251FF"></div>
+            <span class="leg-lbl">WMS Loss</span>
+            <span class="leg-val">${f$(wmsTotal)}</span>
+          </div>
+          <div class="leg-item">
+            <div class="leg-dot" style="background:#051C2C"></div>
+            <span class="leg-lbl">3PL Loss</span>
+            <span class="leg-val">${f$(pl3Total)}</span>
+          </div>
+          <div class="leg-item" style="padding-top:8px;border-top:1px solid var(--c-border)">
+            <div class="leg-dot" style="border:1.5px solid var(--c-border);background:transparent"></div>
+            <span class="leg-lbl">WMS share</span>
+            <span class="leg-val">${Math.round(wmsTotal/totalExposure*100)}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLA Alert Grid -->
+  <div class="sect-title alert">Critical Action Grid — SLA Breach Items</div>
+  ${breachRows.length === 0
+    ? `<div class="insight"><p>No SLA breaches detected in this period.</p></div>`
+    : `<div class="tbl-wrap"><table>
+      <thead><tr>
+        <th>SKU</th><th>Product</th><th>Category</th>
+        <th class="r">Shopify OnHand</th>
+        <th class="r">Var WMS</th><th class="r">Var 3PL</th>
+        <th class="r">Total Loss</th>
+        <th class="r">Disc %</th>
+        <th>SLA Status</th>
+      </tr></thead>
+      <tbody>
+        ${breachRows.map(r => `
+          <tr class="${rowClass(r.status)}">
+            <td class="sku">${r.sku}</td>
+            <td>${r.name}</td>
+            <td><span class="tag">${r.cat}</span></td>
+            <td class="r">${fN(r.onHand)}</td>
+            <td class="r ${r.varWMS>0?'sla-val':''}">${fV(r.varWMS)}</td>
+            <td class="r ${r.var3PL>0?'sla-val':''}">${fV(r.var3PL)}</td>
+            <td class="r sla-val"><strong>${f$(r.total)}</strong></td>
+            <td class="r">${discBar(r.disc, r.slaPct, r.status==='SLA Breach')}</td>
+            <td class="sla-val">${badge(r.status)}</td>
+          </tr>`).join('')}
+      </tbody>
+    </table></div>`
+  }
+</div>`;
+
+  setTimeout(runKPIAnim, 80);
+  setTimeout(runBarAnim, 320);
+  setTimeout(runDonutAnim, 350);
+}
+
+/* ═══════════════════ RENDER: CONFIG ═══════════════════ */
+function renderConfig() {
+  document.getElementById('tab-config').innerHTML = `
+<div class="pw">
+  <h1 class="page-title">Config Master — SKU Registry &amp; SLA Governance</h1>
+  <p class="page-sub">Source of truth for unit costs and SLA thresholds. All CALC ENGINE XLOOKUP formulas resolve here.</p>
+  <div class="input-note">
+    SKU must exactly match Shopify, WMS, and 3PL export codes.
+    Spaces and case are auto-corrected in CALC ENGINE via <strong>UPPER(TRIM())</strong>.
+    Unit_Cost = Landed Cost (COGS) per unit.
+  </div>
+  <div class="tbl-wrap"><table>
+    <thead><tr>
+      <th>SKU</th><th>Product Name</th><th>Category</th>
+      <th class="r">Unit Cost</th>
+      <th class="r">SLA Qty Limit</th>
+      <th class="r">SLA Pct Limit</th>
+    </tr></thead>
+    <tbody>
+      ${CFG.map(r => `<tr>
+        <td class="sku">${r.sku}</td>
+        <td>${r.name}</td>
+        <td><span class="tag">${r.cat}</span></td>
+        <td class="r">${f$(r.cost)}</td>
+        <td class="r">${r.slaQty}</td>
+        <td class="r">${fP(r.slaPct)}</td>
+      </tr>`).join('')}
+    </tbody>
+  </table></div>
+  <div class="insight">
+    <div class="insight-lbl">Excel formula reference</div>
+    <div class="formula-key">
+      Unit_Cost lookup   : =XLOOKUP(Clean_SKU, tbl_Config[SKU], tbl_Config[Unit_Cost], 0)<br>
+      SLA_Qty_Thresh     : =XLOOKUP(Clean_SKU, tbl_Config[SKU], tbl_Config[SLA_Qty_Limit], 0)<br>
+      SLA_Pct_Thresh     : =XLOOKUP(Clean_SKU, tbl_Config[SKU], tbl_Config[SLA_Pct_Limit], 0)
+    </div>
+  </div>
+</div>`;
+}
+
+/* ═══════════════════ RENDER: SHOPIFY ═══════════════════ */
+function renderShopify() {
+  const tot = {avail: SHOPIFY.reduce((s,r)=>s+r.avail,0), onHand: SHOPIFY.reduce((s,r)=>s+r.onHand,0)};
+  document.getElementById('tab-shopify').innerHTML = `
+<div class="pw">
+  <h1 class="page-title">Import: Shopify — eCommerce Inventory Export</h1>
+  <p class="page-sub">Raw paste zone. CALC ENGINE uses <strong style="color:var(--c-primary)">On_Hand_Qty</strong> for variance calculation against WMS and 3PL.</p>
+  <div class="input-note">Paste raw Shopify CSV here (Paste Special → Values Only). Do not modify column order. Supports up to 5,000 rows.</div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>SKU</th><th>Title</th><th class="r">Available Qty</th><th class="r">On Hand Qty</th></tr></thead>
+    <tbody>
+      ${SHOPIFY.map(r => `<tr>
+        <td class="sku">${r.sku}</td>
+        <td>${r.title}</td>
+        <td class="r">${fN(r.avail)}</td>
+        <td class="r"><strong>${fN(r.onHand)}</strong></td>
+      </tr>`).join('')}
+      <tr class="tbl-totals">
+        <td colspan="2"><strong>TOTALS</strong></td>
+        <td class="r">${fN(tot.avail)}</td>
+        <td class="r"><strong>${fN(tot.onHand)}</strong></td>
+      </tr>
+    </tbody>
+  </table></div>
+</div>`;
+}
+
+/* ═══════════════════ RENDER: WMS ═══════════════════ */
+function renderWMS() {
+  const tot = {phys: WMS.reduce((s,r)=>s+r.phys,0), alloc: WMS.reduce((s,r)=>s+r.alloc,0)};
+  document.getElementById('tab-wms').innerHTML = `
+<div class="pw">
+  <h1 class="page-title">Import: WMS — Warehouse Physical Stock</h1>
+  <p class="page-sub">Raw paste zone. <strong style="color:var(--c-primary)">WMS_Physical_Qty</strong> drives variance vs. Shopify On_Hand. Allocated units not used in loss calc.</p>
+  <div class="input-note">Paste raw WMS / store-level physical count (Paste Values Only). Column order must match headers.</div>
+  <div class="tbl-wrap"><table>
+    <thead><tr>
+      <th>SKU</th><th>Location ID</th>
+      <th class="r">WMS Physical Qty</th><th class="r">WMS Allocated Qty</th>
+    </tr></thead>
+    <tbody>
+      ${WMS.map(r => `<tr>
+        <td class="sku">${r.sku}</td>
+        <td><span class="tag">${r.loc}</span></td>
+        <td class="r"><strong>${fN(r.phys)}</strong></td>
+        <td class="r">${fN(r.alloc)}</td>
+      </tr>`).join('')}
+      <tr class="tbl-totals">
+        <td colspan="2"><strong>TOTALS</strong></td>
+        <td class="r"><strong>${fN(tot.phys)}</strong></td>
+        <td class="r">${fN(tot.alloc)}</td>
+      </tr>
+    </tbody>
+  </table></div>
+</div>`;
+}
+
+/* ═══════════════════ RENDER: 3PL ═══════════════════ */
+function render3PL() {
+  const tot = {total:PL3.reduce((s,r)=>s+r.total,0), dmg:PL3.reduce((s,r)=>s+r.dmg,0), avail:PL3.reduce((s,r)=>s+r.avail,0)};
+  document.getElementById('tab-tpl').innerHTML = `
+<div class="pw">
+  <h1 class="page-title">Import: 3PL — Third-Party Logistics Inventory Report</h1>
+  <p class="page-sub">Raw paste zone. <strong style="color:var(--c-primary)">Total_Stock</strong> (not Available_Stock) is used for shrinkage analysis.</p>
+  <div class="input-note">Paste raw 3PL partner inventory report here. Map partner's SKU field to Item_Code column.</div>
+  <div class="tbl-wrap"><table>
+    <thead><tr>
+      <th>Item Code</th>
+      <th class="r">Total Stock</th><th class="r">Damaged Qty</th><th class="r">Available Stock</th>
+    </tr></thead>
+    <tbody>
+      ${PL3.map(r => `<tr>
+        <td class="sku">${r.code}</td>
+        <td class="r"><strong>${fN(r.total)}</strong></td>
+        <td class="r">${fN(r.dmg)}</td>
+        <td class="r">${fN(r.avail)}</td>
+      </tr>`).join('')}
+      <tr class="tbl-totals">
+        <td><strong>TOTALS</strong></td>
+        <td class="r"><strong>${fN(tot.total)}</strong></td>
+        <td class="r">${fN(tot.dmg)}</td>
+        <td class="r">${fN(tot.avail)}</td>
+      </tr>
+    </tbody>
+  </table></div>
+</div>`;
+}
+
+/* ═══════════════════ RENDER: CALC ENGINE ═══════════════════ */
+function renderCalc() {
+  const totWMS = CALC.reduce((s,r)=>s+r.lossWMS,0);
+  const tot3PL = CALC.reduce((s,r)=>s+r.loss3PL,0);
+  const totAll = CALC.reduce((s,r)=>s+r.total,0);
+
+  document.getElementById('tab-calc').innerHTML = `
+<div class="pw">
+  <h1 class="page-title">Calc Engine — SKU-Level Reconciliation &amp; Financial Loss Processing</h1>
+  <p class="page-sub">
+    <strong>Protected Calculation Layer.</strong>
+    All Dashboard KPI values derive from this table.
+    Click any row to inspect the formula trace for that SKU.
+  </p>
+
+  <div class="tbl-wrap"><div class="tbl-scroll"><table style="min-width:1120px">
+    <thead><tr>
+      <th>Master SKU</th>
+      <th>Clean SKU</th>
+      <th class="r">Unit Cost</th>
+      <th class="r">Shopify OnHand</th>
+      <th class="r">WMS Physical</th>
+      <th class="r">3PL Physical</th>
+      <th class="r">Var WMS</th>
+      <th class="r">Var 3PL</th>
+      <th class="r">Loss WMS</th>
+      <th class="r">Loss 3PL</th>
+      <th class="r">Total Loss</th>
+      <th class="r">Disc %</th>
+      <th>SLA Status</th>
+    </tr></thead>
+    <tbody>
+      ${CALC.map(r => `
+        <tr class="${rowClass(r.status)}" onclick="showTrace('${r.sku}')">
+          <td class="sku">${r.sku}</td>
+          <td class="dim">${r.sku.toUpperCase()}</td>
+          <td class="r">${f$(r.cost)}</td>
+          <td class="r">${fN(r.onHand)}</td>
+          <td class="r">${fN(r.wmsPhys)}</td>
+          <td class="r">${fN(r.pl3Phys)}</td>
+          <td class="r ${r.varWMS>0?'sla-val':''}">${fV(r.varWMS)}</td>
+          <td class="r ${r.var3PL>0?'sla-val':''}">${fV(r.var3PL)}</td>
+          <td class="r">${r.lossWMS>0 ? f$(r.lossWMS) : '—'}</td>
+          <td class="r">${r.loss3PL>0 ? f$(r.loss3PL) : '—'}</td>
+          <td class="r"><strong>${r.total>0 ? f$(r.total) : '—'}</strong></td>
+          <td class="r">${discBar(r.disc, r.slaPct, r.status==='SLA Breach')}</td>
+          <td class="sla-val">${badge(r.status)}</td>
+        </tr>`).join('')}
+      <tr class="tbl-totals">
+        <td colspan="8"><strong>TOTALS</strong></td>
+        <td class="r"><strong>${f$(totWMS)}</strong></td>
+        <td class="r"><strong>${f$(tot3PL)}</strong></td>
+        <td class="r"><strong>${f$(totAll)}</strong></td>
+        <td colspan="2"></td>
+      </tr>
+    </tbody>
+  </table></div></div>
+
+  <div class="insight">
+    <div class="insight-lbl">Formula Key (Excel)</div>
+    <div class="formula-key">
+B: Master_SKU     = '02_Config_Master'!B{row}<br>
+C: Clean_SKU      = UPPER(TRIM(B{row}))<br>
+D: Unit_Cost      = XLOOKUP(C{row}, tbl_Config[SKU], tbl_Config[Unit_Cost], 0)<br>
+E: Shopify_OnHand = XLOOKUP(C{row}, UPPER(TRIM(tbl_Shopify[SKU])), tbl_Shopify[On_Hand_Qty], 0)<br>
+F: WMS_Physical   = XLOOKUP(C{row}, UPPER(TRIM(tbl_WMS[SKU])), tbl_WMS[WMS_Physical_Qty], 0)<br>
+G: 3PL_Physical   = XLOOKUP(C{row}, UPPER(TRIM(tbl_3PL[Item_Code])), tbl_3PL[Total_Stock], 0)<br>
+H: Var_WMS        = E{row} − F{row}<br>
+I: Var_3PL        = E{row} − G{row}<br>
+J: Loss_WMS       = IF(H{row}&gt;0, H{row} × D{row}, 0)<br>
+K: Loss_3PL       = IF(I{row}&gt;0, I{row} × D{row}, 0)<br>
+L: Total_Loss     = J{row} + K{row}<br>
+M: Disc_Pct       = IFERROR(MAX(ABS(H{row}), ABS(I{row})) / E{row}, 0)<br>
+N: SLA_Qty_Thresh = XLOOKUP(C{row}, tbl_Config[SKU], tbl_Config[SLA_Qty_Limit], 0)<br>
+O: SLA_Pct_Thresh = XLOOKUP(C{row}, tbl_Config[SKU], tbl_Config[SLA_Pct_Limit], 0)<br>
+P: SLA_Status     = IFS(M{row}&gt;O{row},"SLA Breach", MAX(ABS(H),ABS(I))&gt;N{row},"Threshold Breach", H{row}=0,"Balanced", TRUE,"Acceptable Variance")
+    </div>
+  </div>
+</div>`;
+}
+
+/* ═══════════════════ FORMULA TRACE ═══════════════════ */
+function showTrace(sku) {
+  const r = CALC.find(c => c.sku === sku);
+  if (!r) return;
+
+  const n = r._row;
+  const isBreach = r.status==="SLA Breach";
+  const isThresh = r.status==="Threshold Breach";
+
+  document.getElementById('trace-panel').innerHTML = `
+<div class="trace-hdr">
+  <span class="trace-hdr-title">${r.sku}</span>
+  <button class="trace-close" onclick="closeTrace()">✕</button>
+</div>
+<div class="trace-body">
+  <p style="font-size:13px;color:var(--c-muted);margin-bottom:var(--sp-lg)">${r.name} &nbsp;·&nbsp; <span class="tag">${r.cat}</span></p>
+
+  <div class="trace-step">
+    <div class="step-lbl">Step 1 — SKU Normalization</div>
+    <div class="step-formula">=UPPER(TRIM("${r.sku}"))</div>
+    <div class="step-result">→ "${r.sku.toUpperCase()}"</div>
+  </div>
+  <div class="trace-divider"></div>
+
+  <div class="trace-step">
+    <div class="step-lbl">Step 2 — Unit Cost Lookup</div>
+    <div class="step-formula">=XLOOKUP(C${n}, '02_Config_Master'!$B:$B, '02_Config_Master'!$E:$E, 0)</div>
+    <div class="step-result">Unit_Cost = <strong>${f$(r.cost)}</strong></div>
+  </div>
+  <div class="trace-divider"></div>
+
+  <div class="trace-step">
+    <div class="step-lbl">Step 3 — Node Data Fetch (XLOOKUP × 3)</div>
+    <div class="step-formula">=XLOOKUP(C${n}, UPPER(TRIM('03_Import_Shopify'!$B$2:$B$5001)), '03_Import_Shopify'!$E$2:$E$5001, 0)</div>
+    <div class="step-result">Shopify On-Hand = <strong>${fN(r.onHand)}</strong> units</div>
+    <div class="step-formula" style="margin-top:8px">=XLOOKUP(C${n}, UPPER(TRIM('04_Import_WMS'!$B$2:$B$5001)), '04_Import_WMS'!$D$2:$D$5001, 0)</div>
+    <div class="step-result">WMS Physical = <strong>${fN(r.wmsPhys)}</strong> units</div>
+    <div class="step-formula" style="margin-top:8px">=XLOOKUP(C${n}, UPPER(TRIM('05_Import_3PL'!$B$2:$B$5001)), '05_Import_3PL'!$C$2:$C$5001, 0)</div>
+    <div class="step-result">3PL Physical = <strong>${fN(r.pl3Phys)}</strong> units</div>
+  </div>
+  <div class="trace-divider"></div>
+
+  <div class="trace-step">
+    <div class="step-lbl">Step 4 — Variance Calculation</div>
+    <div class="step-formula">=E${n} − F${n} = ${r.onHand} − ${r.wmsPhys}</div>
+    <div class="step-result ${r.varWMS>0?'loss':''}">Var_WMS = <strong>${fV(r.varWMS)}</strong> units
+      ${r.varWMS>0 ? ' ⚠ Shopify records more than WMS holds' : ' ✓'}</div>
+    <div class="step-formula" style="margin-top:8px">=E${n} − G${n} = ${r.onHand} − ${r.pl3Phys}</div>
+    <div class="step-result ${r.var3PL>0?'loss':''}">Var_3PL = <strong>${fV(r.var3PL)}</strong> units
+      ${r.var3PL>0 ? ' ⚠ Shopify records more than 3PL holds' : ' ✓'}</div>
+  </div>
+  <div class="trace-divider"></div>
+
+  <div class="trace-step">
+    <div class="step-lbl">Step 5 — Financial Loss Conversion</div>
+    <div class="step-formula">=IF(H${n}&gt;0, H${n}×D${n}, 0) = IF(${r.varWMS}&gt;0, ${r.varWMS}×${f$(r.cost)}, 0)</div>
+    <div class="step-result ${r.lossWMS>0?'loss':''}">Loss_WMS = <strong>${f$(r.lossWMS)}</strong></div>
+    <div class="step-formula" style="margin-top:8px">=IF(I${n}&gt;0, I${n}×D${n}, 0) = IF(${r.var3PL}&gt;0, ${r.var3PL}×${f$(r.cost)}, 0)</div>
+    <div class="step-result ${r.loss3PL>0?'loss':''}">Loss_3PL = <strong>${f$(r.loss3PL)}</strong></div>
+    <div style="margin-top:10px;padding:10px 14px;border-radius:var(--r-sm);background:${r.total>0?'var(--c-neg-bg)':'var(--c-ok-bg)'}">
+      <strong style="color:${r.total>0?'var(--c-neg)':'var(--c-ok)'}">Total Loss = ${f$(r.total)}</strong>
+    </div>
+  </div>
+  <div class="trace-divider"></div>
+
+  <div class="trace-step">
+    <div class="step-lbl">Step 6 — Discrepancy % &amp; SLA Evaluation</div>
+    <div class="step-formula">=IFERROR(MAX(ABS(H${n}), ABS(I${n})) / E${n}, 0)
+= MAX(${Math.abs(r.varWMS)}, ${Math.abs(r.var3PL)}) / ${r.onHand}</div>
+    <div class="step-result">Disc_Pct = <strong>${fP(r.disc)}</strong>
+      &nbsp;·&nbsp; SLA threshold = <strong>${fP(r.slaPct)}</strong>
+      &nbsp;·&nbsp; SLA Qty limit = <strong>${r.slaQty}</strong></div>
+    <div class="step-formula" style="margin-top:8px">=IFS(M${n}&gt;O${n}, "SLA Breach",
+    MAX(ABS(H),ABS(I))&gt;N${n}, "Threshold Breach",
+    H${n}=0, "Balanced",
+    TRUE, "Acceptable Variance")</div>
+    <div style="margin-top:10px">${badge(r.status)}</div>
+    ${isBreach ? `<div class="step-eval breach" style="margin-top:8px">Disc ${fP(r.disc)} &gt; SLA limit ${fP(r.slaPct)} — immediate audit required</div>` : ''}
+    ${isThresh ? `<div class="step-eval" style="margin-top:8px;background:rgba(255,193,7,.1);color:var(--c-warn)">Max variance ${Math.max(Math.abs(r.varWMS),Math.abs(r.var3PL))} units &gt; SLA Qty limit ${r.slaQty}</div>` : ''}
+    ${!isBreach&&!isThresh ? `<div class="step-eval ok" style="margin-top:8px">Within acceptable operating range</div>` : ''}
+  </div>
+</div>`;
+
+  document.getElementById('overlay').classList.add('open');
+}
+
+function closeTrace() {
+  document.getElementById('overlay').classList.remove('open');
+}
+
+/* ═══════════════════ TAB SWITCHING ═══════════════════ */
+document.querySelectorAll('.nav-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.dataset.tab;
+    document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + id).classList.add('active');
+    if (id === 'dash') {
+      setTimeout(runKPIAnim, 80);
+      setTimeout(runBarAnim, 300);
+      setTimeout(runDonutAnim, 330);
+    }
+  });
+});
+
+/* ═══════════════════ INIT ═══════════════════ */
+renderDash();
+renderConfig();
+renderShopify();
+renderWMS();
+render3PL();
+renderCalc();
+</script>
+</body>
+</html>
