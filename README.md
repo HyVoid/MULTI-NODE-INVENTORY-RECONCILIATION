@@ -1,6 +1,3 @@
-# 🌐 Language
-
-**English** | [简体中文](README.zh-CN.md)
 
 # Stop Explaining Inventory Loss. Start Locating It.
 
