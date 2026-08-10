@@ -11,7 +11,7 @@
 > **No signup. No installation. Free.**
 >
 > 🌐 **[Open in Browser](YOUR_HTML_DEMO_URL)** — HTML live version
-> 📥 **[Download Excel](YOUR_EXCEL_DOWNLOAD_URL)** — Excel version
+> 📥 **[Download Excel](https://alexhasgreatestuff.gumroad.com/l/ddongr)** — Excel version
 
 ## Screenshots
 
