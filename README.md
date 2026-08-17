@@ -10,7 +10,7 @@
 
 > **No signup. No installation. Free.**
 >
-> 🌐 **[Open in Browser](YOUR_HTML_DEMO_URL)** — HTML live version
+> 🌐 **[Open in Browser](https://hyvoid.github.io/MULTI-NODE-INVENTORY-RECONCILIATION/)** — HTML live version
 > 📥 **[Download Excel](https://alexhasgreatestuff.gumroad.com/l/ddongr)** — Excel version
 
 ## Screenshots
