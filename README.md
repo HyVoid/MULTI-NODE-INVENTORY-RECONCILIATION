@@ -11,7 +11,7 @@
 > **No signup. No installation. Free.**
 >
 > 🌐 **[Open in Browser](https://hyvoid.github.io/MULTI-NODE-INVENTORY-RECONCILIATION/)** — HTML live version
-> 📥 **[Download Excel](https://alexhasgreatestuff.gumroad.com/l/ddongr)** — Excel version
+> 📥 **[Download Excel](https://alexhasgreatestuff.gumroad.com/l/ddongr?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=inventory-reconciliation-shrinkage)** — Excel version
 
 ## What It Helps You Track
 
