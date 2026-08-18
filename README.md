@@ -13,18 +13,6 @@
 > 🌐 **[Open in Browser](https://hyvoid.github.io/MULTI-NODE-INVENTORY-RECONCILIATION/)** — HTML live version
 > 📥 **[Download Excel](https://alexhasgreatestuff.gumroad.com/l/ddongr)** — Excel version
 
-## Screenshots
-
-<!-- screenshot: browser version -->
-
-**Browser version — operational reconciliation view**
-Shows the standardized inventory comparison and exception analysis without requiring a local Excel workflow.
-
-<!-- screenshot: Excel version -->
-
-**Excel version — management dashboard**
-Shows total inventory variance, estimated shrinkage value, node-level discrepancy rates, and the highest-risk SKUs for investigation.
-
 ## What It Helps You Track
 
 * **Shopify vs. WMS vs. 3PL inventory differences** — see where system-reported quantities stop agreeing.
