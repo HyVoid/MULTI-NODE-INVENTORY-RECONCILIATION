@@ -13,7 +13,7 @@
 Try the browser version for free. If you need the Excel version, you can buy it with a 30-day, no-questions-asked money-back guarantee.
 >
 > 🌐 **[Open in Browser](https://hyvoid.github.io/MULTI-NODE-INVENTORY-RECONCILIATION/)** — HTML live version
-> 📥 **[Download Excel](https://alexhasgreatestuff.gumroad.com/l/ddongr?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=inventory-reconciliation-shrinkage)** — Excel version
+> 📥 **[Download Excel](https://www.theseusworkshop.com/l/ddongr?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=inventory-reconciliation-shrinkage)** — Excel version
 
 ## What It Helps You Track
 
