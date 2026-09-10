@@ -1,3 +1,4 @@
+[ 🌐 عربي ](README.ar.md) | [ 🇪🇸 Español ](README.sp.md) | [ 🇬🇧 English ](README.md)
 
 # Stop Explaining Inventory Loss. Start Locating It.
 # Multi-Node Inventory Reconciliation & Shrinkage Analysis
