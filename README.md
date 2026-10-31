@@ -693,10 +693,12 @@ The workbook should therefore be used as a **fact-finding and prioritization mec
 
 A collection of lightweight Excel decision-support tools covering operational control, reconciliation, profitability, inventory, and financial analysis.
 
-* **Inventory Planning & Reorder Control** — demand, replenishment, inventory exposure, and purchasing decisions.
-* **Order-Level Profit Engine** — revenue, variable costs, shipping allocation, and order-level profitability.
-* **Single-Project Construction Control** — project budget, commitments, job costs, and project profitability.
-* **Contractor Operations & Profitability Management System** — Lead → Estimate → Job → Labor & Materials → Job Cost → Profit → Customer History workflow.
+* **[inventory-planning-reorder-point-excel](https://github.com/HyVoid/inventory-planning-reorder-point-excel)** — What purchasing decision should be made today given demand trends lead times and cash constraints? — Forecast inventory requirements by combining demand signals lead-time risk purchasing recommendations and working capital exposure.
+* **[Retail-SKU-Concentration-Assortment-Diagnostic-Console](https://github.com/HyVoid/Retail-SKU-Concentration-Assortment-Diagnostic-Console)** — Which products dominate inventory risk or dilute assortment quality? — Identify SKU concentration risk and assortment efficiency across retail product catalogs.
+* **[Retail-and-Maquila-Inventory-Ledger](https://github.com/HyVoid/Retail-and-Maquila-Inventory-Ledger)** — Where is inventory moving across retail and maquila operations? — Track inventory movement processing loss and stock exposure across factories warehouses and stores.
+* **[Universal-3D-Cargo-Loading-Optimization-Simulator](https://github.com/HyVoid/Universal-3D-Cargo-Loading-Optimization-Simulator)** — How should cargo be loaded to reduce wasted space and operational friction? — Simulate 3D cargo loading configurations to maximize container capacity and shipping efficiency.
+* **[Cross-Border-DTC-Inventory-Governance-Console](https://github.com/HyVoid/Cross-Border-DTC-Inventory-Governance-Console)** — What is the real purchasing demand after removing pre-order liabilities and expected returns? — Reconstruct true demand signals by isolating pre-order obligations and return behavior from raw sales data.
+* **[inventory-allocation-fulfillment-excel](https://github.com/HyVoid/inventory-allocation-fulfillment-excel)** — Can each customer order actually be delivered on time given physical stock, reservations, in-transit containers, and open POs across all our locations? — Calculate available-to-promise quantities and net procurement requirements by reconciling physical stock, order reservations, in-transit inventory, and open purchase orders across multiple locations.
 
 ## License
 
