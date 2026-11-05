@@ -3,123 +3,172 @@
 # Multi-Node Inventory Reconciliation & Shrinkage Analysis | Shopify & 3PL Excel Template
 <img width="1920" height="790" alt="image" src="https://github.com/user-attachments/assets/6689bffe-1aac-43d7-9f63-6e85a14470f0" />
 
+# Shopify & 3PL Inventory Reconciliation Excel Template: Warehouse Stock Discrepancy, Cycle Count Variance & Shrinkage Cost Calculator
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](#license)
-[![Platform: Browser + Excel](https://img.shields.io/badge/Platform-Browser%20%2B%20Excel-217346.svg)](#quick-start-tutorial-how-to-automate-your-inventory-reconciliation)
-[![Tool Type: Decision Support](https://img.shields.io/badge/Tool%20Type-Decision%20Support-2251FF.svg)](#what-it-helps-you-track-inventory-pain-points-vs-solutions)
+[![Platform: Web Browser + Microsoft Excel (.xlsx)](https://img.shields.io/badge/Platform-Web%20Browser%20%2B%20Microsoft%20Excel%20(.xlsx)-217346.svg)](#quick-start-tutorial-how-to-reconcile-shopify-wms--3pl-inventory-in-4-steps)
+[![Tool Type: Plug-and-Play Ecommerce Inventory Spreadsheet](https://img.shields.io/badge/Tool%20Type-Plug--and--Play%20Inventory%20Spreadsheet-2251FF.svg)](#what-it-helps-you-track-ecommerce-inventory-pain-points-vs-solutions)
 
-**An automated inventory reconciliation spreadsheet and shrinkage analysis template designed for multichannel ecommerce brands. Instantly compare Shopify stock levels, internal Warehouse Management System (WMS) records, and Third-Party Logistics (3PL) physical counts to locate discrepancies and translate unit loss into direct financial impact—without writing VLOOKUP formulas or rebuilding reports every month.**
+**A ready-to-use Shopify & 3PL Inventory Reconciliation Excel Template (`.xlsx`) and Free Online Stock Discrepancy Calculator built for ecommerce brands, DTC operators, and warehouse managers who need to audit inventory counts without writing formulas.** Compare **Shopify storefront quantities**, internal **Warehouse Management System (WMS) records**, and **Third-Party Logistics (3PL) physical cycle counts** side by side, calculate **COGS-weighted inventory shrinkage ($)**, stop **ghost-inventory overselling**, and generate **documented 3PL reimbursement claims** in one pre-built spreadsheet.
 
-**No signup. No installation. Free in your browser.**
+**Test your SKU data free in your browser right now, or download the unlocked Excel file for monthly audits.**
 
-Test your operational data in the free browser version instantly. For ongoing monthly month-end closes and offline data security, upgrade to the fully unlocked Excel template with a 30-day, no-questions-asked money-back guarantee.
+Every SKU matching rule, text-cleaning formula, and dollar-variance calculation is already built in. Copy and paste your raw CSV exports from Shopify, your WMS, and your 3PL to see your exact stock discrepancies and financial loss exposure in seconds—backed by a 30-day, no-questions-asked money-back guarantee.
 
-> 🌐 **Open Interactive Dashboard**  
-> [Try the Free Browser-Based 3PL Inventory Reconciliation Simulator](https://hyvoid.github.io/MULTI-NODE-INVENTORY-RECONCILIATION/)
+> 🌐 **Try the Online Reconciliation Calculator First**  
+> [Launch the Free Interactive Shopify & 3PL Inventory Reconciliation Web Calculator (Browser Demo, Zero Setup Required)](https://hyvoid.github.io/MULTI-NODE-INVENTORY-RECONCILIATION/)
 > 
-> 📥 **Get the Reusable Spreadsheet**  
-> [Download the Inventory Shrinkage & Audit Excel Template](https://www.theseusworkshop.com/l/ddongr?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=inventory-reconciliation-shrinkage)
+> 📥 **Download the Ready-to-Use Excel Template**  
+> [Get the Unlocked Multi-Node Inventory Reconciliation & Shrinkage Audit Excel Template (.xlsx with Auto-Updating Formulas)](https://www.theseusworkshop.com/l/ddongr?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=inventory-reconciliation-shrinkage)
+>
+> *Both the free browser calculator and the downloadable Microsoft Excel workbook run on the exact same pre-configured 3-way SKU matching and COGS variance tables.*
 
 ---
 
-## What It Helps You Track: Inventory Pain Points vs. Solutions
+## What It Helps You Track: Ecommerce Inventory Pain Points vs. Solutions
 
-Instead of merely identifying that "numbers don't match," this toolkit translates raw stock differences into a financial action plan.
+Finding out that your stock numbers do not match is only half the problem—you also need to know where the units went and how much money is at stake. This **plug-and-play inventory audit spreadsheet** solves the five most common stock control blind spots for multichannel ecommerce brands:
 
-| E-commerce Inventory Pain Point (The "Why") | Reconciliation Solution (The "How") |
-| :--- | :--- |
-| **Cross-System Blind Spots:** Unsure which system (Shopify vs. 3PL vs. WMS) holds the ground truth for available stock. | **Multi-Node Triangulation:** Aligns system-reported quantities side-by-side to pinpoint exactly where data syncs fail. |
-| **Unquantified Financial Shrinkage:** Treating a 20-unit variance on a $5 item the same as a $50 item. | **COGS-Weighted Variance Analysis:** Multiplies unit discrepancies by SKU cost to reveal the true financial write-off exposure. |
-| **Third-Party Logistics (3PL) Leakage:** Suspecting fulfillment partners are losing stock, but lacking hard proof for SLA claims. | **Discrepancy Rate Tracking:** Isolates 3PL vs. internal warehouse variance rates to build a factual basis for contractual loss claims. |
-| **Analysis Paralysis via Raw Data:** Scrolling through thousands of rows of cycle count spreadsheets to find errors. | **Exception-Based Dashboarding:** Automatically ranks the "Top 10 Loss-Value SKUs" to prioritize management investigations. |
-
----
-
-## Quick Start Tutorial: How to Automate Your Inventory Reconciliation
-
-Transform messy, multi-source exports into an executive inventory audit in four structured steps.
-
-### Step 1: Configure Your SKU Master Data (One-Time Setup)
-Navigate to the `Config_Master` sheet. Define your standard SKU nomenclature, unit cost (COGS), and business-specific warning thresholds (e.g., flag any discrepancy > 5 units or > $100 value). This baseline ensures all incoming data is measured against a single source of truth.
-
-### Step 2: Import WMS, 3PL, and Shopify Exports
-Bypass manual data normalization. Paste your raw CSV exports directly into their designated tabs:
-*   `Import_Shopify` (Your storefront availability)
-*   `Import_WMS` (Your internal warehouse records)
-*   `Import_3PL` (Your external fulfillment physical counts)
-*Note: The system is engineered to ingest raw exports directly—no manual column deletion or rebuilding required.*
-
-### Step 3: Generate the Shrinkage Dashboard & Review Exceptions
-Navigate to the `Dashboard` output. The automated reconciliation engine instantly cleans formatting, aligns SKUs, and calculates discrepancies. Review your highest-value inventory variances, overall shrinkage value, and node-to-node accuracy rates without manually calculating a single cell.
-
-### Step 4: Establish a Routine & Download for Repeated Use
-For your first audit, use the browser version to identify immediate stock issues. To establish a robust monthly inventory control cadence, export the system for long-term use.
-
-👉 **Action Required:** Once you've validated your workflow, **[Download the reusable Inventory Reconciliation Excel Template here](https://www.theseusworkshop.com/l/ddongr?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=inventory-reconciliation-shrinkage)**. Next month, simply paste the new inventory snapshot over the old data—the entire variance analysis will refresh automatically.
-
----
-
-## The Business Logic & Methodology
-
-This toolkit is engineered around professional auditing principles, shifting the focus from data aggregation to proactive asset protection. Here is the operational methodology powering the workbook:
-
-### 1. Methodology: 3-Way Inventory Matching
-*   **The Method:** Similar to AP financial audits, this framework employs a **3-way matching principle** across digital sales (Shopify), internal tracking (WMS), and physical storage (3PL). 
-*   **The Business Impact:** It stops the "blame game." By triangulating data, operations managers can identify if an issue is a storefront syncing error (API lag) or a physical fulfillment loss (shrinkage), dramatically reducing resolution time.
-
-### 2. Methodology: Financial Value-at-Risk (VaR) Prioritization
-*   **The Method:** Discrepancies are inherently weighted by Cost of Goods Sold (COGS). The calculation layer transforms `Unit Variance` into `Financial Write-off Exposure`.
-*   **The Business Impact:** It optimizes labor allocation. Instead of warehouse staff spending 4 hours investigating a 50-unit variance on poly-mailers, they are redirected by the dashboard to investigate a 3-unit variance on high-margin electronics.
-
-### 3. Methodology: Exception-Based Reporting
-*   **The Method:** The toolkit filters thousands of matching SKUs into a condensed list of operational exceptions based on user-defined tolerance thresholds (e.g., acceptable shrinkage < 0.5%).
-*   **The Business Impact:** It creates **productized reasoning**. The supply chain director isn't looking at a data dump; they are looking at an actionable punch list for internal process correction or 3PL claim filing.
-
----
-
-## Real-World Scenarios: When to Use This Inventory Audit Template
-
-This system is purpose-built for critical supply chain inflection points where physical stock accuracy dictates financial health.
-
-*   **Scenario A: Month-End Financial Close.** Finance teams need an exact COGS write-off figure for accounting. Use this template to calculate the exact dollar value of lost inventory across all warehouses on the last day of the month.
-*   **Scenario B: 3PL SLA Contract Disputes.** You suspect your fulfillment partner is losing merchandise beyond the 1.5% shrinkage allowance. Use the multi-node comparison to generate a documented claim report for missing high-ticket SKUs.
-*   **Scenario C: Peak Season Stockout Prevention (Q4/Black Friday).** Shopify shows 100 units, but the 3PL only has 20. Run this reconciliation weekly during Q4 to catch "ghost inventory" before customers buy stock you don't physically possess, preventing massive refund rates and customer support tickets.
-
----
-
-## Common Inventory Operations Problems This Solves
-
-| Inventory Operations Problem | Manual Spreadsheet Process | Automated Template Solution |
+| High-Frequency Search Topic & Tracking Goal | The Daily Ecommerce Inventory Pain Point (Where Money Leaks) | How This Pre-Built Excel Template Fixes & Tracks It |
 | :--- | :--- | :--- |
-| **Three disparate systems disagree** | Operators manually run `INDEX/MATCH` across Shopify, WMS, and 3PL files, increasing broken reference risks. | A standardized reconciliation layer aligns all stock keeping units (SKUs) automatically. |
-| **Messy exported data formatting** | Blank rows, trailing spaces, and case-sensitive SKUs create false mismatch errors. | The calculation layer normalizes strings and data types prior to variance checking. |
-| **Shrinkage is measured only in units** | Management sees a unit deficit but cannot accurately estimate the COGS impact. | The embedded SKU cost matrix converts quantity deficits into estimated financial write-offs. |
-| **Large exceptions are buried in detail** | Controllers scan thousands of rows and miss commercially fatal stock discrepancies. | The executive dashboard highlights 3PL error rates, dead stock, and top 10 loss-value items. |
-| **3PL losses are difficult to substantiate** | Missing inventory remains an informal warehouse complaint without documentation. | Generates a factual variance ledger to support formal 3PL SLA claims and reimbursements. |
+| **Shopify vs. 3PL vs. WMS Stock Discrepancies (`3-Way Inventory Matching`)** | Shopify says you have 120 units, your WMS says 100, and your 3PL says 85—leaving you unsure which system holds the real stock count. | Aligns **Shopify, WMS, and 3PL quantities side by side** per SKU so you can separate IT sync delays from actual physical warehouse losses. |
+| **Inventory Shrinkage Cost & COGS Write-Off (`$` Impact vs. Unit Count)** | Treating a 20-unit missing count on a $2 packaging insert with the same urgency as a 20-unit loss on a $75 hero product. | Multiplies unit variances by each SKU's **Unit Cost (COGS)** to calculate exact **Dollar Shrinkage Exposure ($)** for accounting write-offs. |
+| **3PL Lost Stock & SLA Reimbursement Claims (`Shrinkage Allowance` Audit)** | You know your fulfillment center is losing merchandise, but you lack the SKU-level variance proof required to file a contract claim. | Tracks **3PL vs. Internal Warehouse Discrepancy Rates (%)** against your contractual shrinkage cap to build a factual reimbursement ledger. |
+| **Ghost Inventory & Peak-Season Overselling (`Stockout` Prevention)** | Shopify displays more available units than actually sit on 3PL shelves, causing paid ads to drive orders you have to cancel and refund. | Flags every SKU where **Digital Storefront Stock exceeds Physical 3PL Stock** so you can correct inventory levels before overselling. |
+| **Cycle Count Analysis Paralysis (`Top 10 Loss-Value SKUs`)** | Scrolling through thousands of spreadsheet rows after a warehouse cycle count while missing the 5 SKUs driving 80% of your financial loss. | Automatically filters out matching rows and ranks the **Top 10 Highest Dollar-Loss SKUs** on one summary dashboard for immediate action. |
 
 ---
 
-## Who This Is For: Roles & Use Cases
+## Quick Start Tutorial: How to Reconcile Shopify, WMS & 3PL Inventory in 4 Steps
 
-This tool bridges the gap between physical warehousing and financial reporting. It is purposefully designed for:
+You do not need advanced Excel skills or manual `VLOOKUP` formulas to run a warehouse audit. Follow these four steps to turn raw CSV exports into a clear **Inventory Shrinkage & Discrepancy Report**:
 
-*   **Ecommerce Operations Managers** needing a *Shopify inventory reconciliation template* to sync digital storefronts with physical fulfillment centers.
-*   **Supply Chain Directors** looking for a *3PL audit software alternative* to hold external partners accountable for contractual shrinkage rates.
-*   **Inventory Controllers & Warehouse Managers** conducting monthly *cycle count reconciliations* across multiple internal nodes.
-*   **Fractional CFOs & Finance Managers** requiring an accurate method to calculate *inventory shrinkage and COGS impact* for month-end accounting closes.
-*   **DTC Founders** who need an executive-level overview of inventory health without investing in complex, six-figure ERP integrations.
+### Step 1: Enter Your SKU Master List, Unit COGS & Alert Thresholds (`Config_Master`)
+Open the `Config_Master` tab to set your baseline inventory rules:
+- Paste your master **SKU List** and **Unit Cost of Goods Sold (COGS)**.
+- Set your custom **Discrepancy Warning Thresholds** (for example, flag any SKU with more than a `5-unit` gap or more than `$100` in missing inventory value).
 
-*Note: This toolkit is **not** designed to replace real-time APIs, ERP systems, or live WMS barcode scanning. It is a periodic decision-support framework used to audit those systems.*
+*Preview it live:* See how the master configuration table works right now in the [Free Online 3PL Inventory Reconciliation Browser Calculator](https://hyvoid.github.io/MULTI-NODE-INVENTORY-RECONCILIATION/).
 
 ---
 
-## About the Creator
+### Step 2: Copy and Paste Your Raw Shopify, WMS & 3PL CSV Exports
+Skip manual column formatting and text cleanup. Paste your raw inventory exports directly into the three input tabs:
+- `Import_Shopify`: Your exported Shopify product inventory CSV (storefront stock levels).
+- `Import_WMS`: Your internal warehouse management system or ERP stock report.
+- `Import_3PL`: Your fulfillment partner's physical cycle count or ending inventory report (compatible with exports from ShipBob, ShipMonk, Flexport, Amazon MCF, and custom 3PL portals).
+- **Zero manual formula dragging:** The pre-built tables clean extra spaces, align SKU codes, and expand automatically when you paste new rows.
 
-I build lightweight operational trackers and decision-support tools for situations where there are too many moving parts to hold in your head, but not enough complexity to justify another enterprise system.
+---
 
-The central question is simple: **What information needs to be in one centralized place before the next strategic supply-chain decision can be made confidently?**
+### Step 3: Check Your Shrinkage Dashboard & Top 10 Loss-Value SKUs (`Dashboard`)
+Switch to the `Dashboard` tab to view your completed audit results:
+- See total **Inventory Shrinkage Value ($)**, **Net Unit Variance**, and **System-to-System Accuracy Rates (%)** calculated automatically.
+- Review the **Top 10 Loss-Value SKUs** list to see which exact products need a physical recount in the warehouse or an urgent stock adjustment on Shopify.
 
-This Multi-Node Inventory Reconciliation workbook is one example of that approach: turning recurring cross-system stock comparisons into a standardized analytical workflow that connects operational discrepancies to financial consequences.
+---
+
+### Step 4: Download the Unlocked Excel Template for One-Click Monthly Audits
+Use the free browser tool to test your workflow and spot immediate stock gaps today. To save your SKU cost baselines locally, run recurring month-end accounting closes, and build historical 3PL claim logs, download the unlocked `.xlsx` spreadsheet.
+
+> 💡 **Why Growing Ecommerce Brands Use This Excel Template Instead of Building From Scratch:**  
+> Cleaning messy SKU strings across three different exports, aligning mismatched rows, and weighting stock variances by unit COGS involves tedious spreadsheet engineering. **In this Excel template, every 3-way matching rule, text normalizer, and auto-updating formula is already built for you.**  
+> 
+> You do not even need to double-click cell corners or drag formulas down. Download the workbook to your computer, paste your monthly Shopify and 3PL exports over last month's data, and get an updated financial shrinkage audit in one click. Even if you have zero technical spreadsheet background, you get instant visibility into your inventory health—freeing you to focus on marketing, restocking bestsellers, and closing sales during peak Q4 and Black Friday seasons while a simple copy-and-paste template handles the data reconciliation.  
+> 
+> 👉 **[Download the Unlocked Shopify & 3PL Inventory Reconciliation Excel Template (.xlsx) and Automate Your Stock Audits Today](https://www.theseusworkshop.com/l/ddongr?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=inventory-reconciliation-shrinkage)**
+
+---
+
+## The Business Logic & Methodology: 4 Hidden Inventory Blind Spots This Excel Template Solves for You
+
+Most ecommerce brands lose thousands of dollars to inventory shrinkage and overselling not because they forget to count stock, but because standard 2-way checks and basic unit spreadsheets hide where the real financial damage happens. Here is how this template protects your inventory and cash flow in plain terms:
+
+### 1. Comparing Only Two Systems Hides Whether You Have an IT Bug or Warehouse Theft (3-Way Inventory Triangulation)
+**The Objective Fact:** If you only compare Shopify (100 units) against your 3PL (80 units), you know 20 units are missing, but you do not know *why*. Those 20 units could be sitting in unfulfilled orders because an API webhook failed, or 20 physical boxes could have walked out the warehouse back door.  
+**Your Direct Benefit:** By matching **Shopify (Digital Storefront) + WMS (Internal Ledger) + 3PL (Physical Shelf Count)** side by side in one row, the template isolates the exact break point:
+- If `Shopify ≠ WMS`, but `WMS = 3PL`: You have a storefront syncing or unfulfilled-order lag. Fix your integration settings.
+- If `Shopify = WMS`, but `3PL < WMS`: Physical stock was lost, damaged, or miscounted at the fulfillment center. File a 3PL claim.
+
+### 2. Counting Missing Units Instead of Missing Dollars Wastes Warehouse Labor (COGS-Weighted Variance Ranking)
+**The Objective Fact:** A standard cycle count sheet treats every unit equally. If your team sorts discrepancies by unit count alone, they will spend hours recounting cheap packaging supplies while ignoring high-cost products that quietly drain your profit margin. Look at how raw unit counts mislead warehouse teams compared to COGS-weighted shrinkage:
+
+```text
+SKU-A (Branded Poly-Mailer):   -50 Units Missing  ×  $0.20 Unit COGS  =   -$10.00 Financial Loss
+SKU-B (Wireless Headphones):    -4 Units Missing  × $115.00 Unit COGS =  -$460.00 Financial Loss
+
+```
+
+In a basic unit-count spreadsheet, `SKU-A` (-50 units) looks like an emergency while `SKU-B` (-4 units) looks like a minor rounding error—even though `SKU-B` costs your business **46 times more money**.
+
+**Your Direct Benefit:** The template multiplies every unit discrepancy by its unit COGS automatically and ranks your **Top 10 Loss-Value SKUs by dollar impact**. Your team investigates the $460 loss first instead of chasing $10 worth of mailers.
+
+### 3. 3PL Fulfillment Contracts Have Strict Claim Deadlines and Shrinkage Caps (Documented SLA Claim Proof)
+
+**The Objective Fact:** Almost all third-party logistics (3PL) contracts include a built-in "shrinkage allowance" (typically 0.5% to 2.0% of total units handled) and require merchants to submit SKU-by-SKU variance proof within 15 to 30 days of a cycle count to qualify for reimbursement. Complaints sent over email without structured variance logs are routinely rejected by 3PL account managers.
+
+**Your Direct Benefit:** The template calculates exact **Node-to-Node Discrepancy Percentages** and generates a clean, SKU-level variance table showing expected stock, physical count, unit deficit, and COGS value—giving you ready-to-send documentation to recover cash from your 3PL.
+
+### 4. "Ghost Inventory" on Shopify Burns Paid Ad Spend and Triggers Chargebacks (Phantom Stock Detection)
+
+**The Objective Fact:** When your Shopify store thinks you have 50 units in stock, your Meta and Google shopping ads keep spending money to drive traffic to that product page. If your 3PL actually has 0 units on the shelf ("ghost inventory"), every new customer order results in a fulfillment delay, a manual cancellation, lost payment processing fees, and angry customer support tickets.
+
+**Your Direct Benefit:** The template highlights every SKU where storefront availability exceeds physical warehouse stock so you can adjust Shopify inventory quantities before overselling during high-traffic sales events.
+
+---
+
+## Manual Inventory Spreadsheets (`VLOOKUP`) vs. This Automated Shopify & 3PL Reconciliation Template
+
+| Warehouse & Accounting Comparison Factor | Manual Excel Sheets (`VLOOKUP` / `INDEX-MATCH` From Scratch) | Standardized Multi-Node Inventory Reconciliation Template (This Tool) |
+| --- | --- | --- |
+| **3-System Stock Alignment (`Shopify` + `WMS` + `3PL`)** | Staff manually stitch three separate CSV files together every month, risking broken cell references and skipped SKUs. | Pre-built **3-Way Matching Engine** aligns Shopify, WMS, and 3PL quantities automatically as soon as you paste your exports. |
+| **Dirty CSV Formatting & SKU Mismatches** | Extra trailing spaces, leading zeros, and uppercase vs. lowercase SKU codes trigger false `#N/A` errors across thousands of rows. | Built-in **Text Normalization Layer** cleans whitespace and standardizes SKU strings before calculating stock differences. |
+| **Financial Shrinkage Valuation (`COGS Write-Off`)** | Reports only show missing unit quantities, forcing bookkeepers to look up product costs manually at month-end close. | Embedded **SKU Cost Matrix** converts every unit shortage into exact **Dollar Shrinkage Exposure ($)** for accounting entries. |
+| **Exception Filtering (`Top Loss SKUs`)** | Managers scroll through 5,000+ matching rows trying to spot which products have dangerous stock gaps. | **Automated Exception Dashboard** filters out normal rows and ranks the **Top 10 Highest Dollar-Loss SKUs** automatically. |
+| **3PL SLA Reimbursement Documentation** | Missing warehouse units are argued informally over email without historical accuracy percentages or dollar totals. | Produces an audit-ready **3PL Variance & Discrepancy Rate Ledger** to substantiate formal SLA credit and reimbursement claims. |
+
+---
+
+## Who This Is For: Ecommerce Roles, Inventory Use Cases & Spreadsheet Workflows
+
+This toolkit bridges the gap between physical warehouse shelves and ecommerce financial statements. It is built for **growing DTC brands, multichannel Shopify sellers, 3PL users, and ecommerce finance teams** who want reliable inventory control without paying $30,000+ per year for an enterprise ERP:
+
+* **Shopify Store Owners & DTC Brand Founders (`Shopify Inventory Reconciliation Excel Template`):** Spot phantom stock and missing warehouse inventory in minutes without hiring a data analyst or learning complex spreadsheet formulas.
+* **Ecommerce Operations & Fulfillment Managers (`3PL Stock Discrepancy & SLA Audit Spreadsheet`):** Hold external fulfillment centers (such as ShipBob, ShipMonk, or regional 3PLs) accountable by tracking monthly shrinkage rates against contractual SLA caps.
+* **Warehouse Managers & Inventory Control Clerks (`Plug-and-Play Cycle Count Variance Calculator`):** Reconcile physical bin counts against WMS ledger records after weekly or monthly cycle counts, prioritizing recounts by highest dollar value at risk.
+* **Ecommerce Bookkeepers & Fractional CFOs (`Inventory Shrinkage & COGS Write-Off Accounting Model`):** Calculate exact ending inventory valuation adjustments and month-end COGS shrinkage write-offs for QuickBooks Online, Xero, or NetSuite.
+* **Multichannel Amazon, Walmart & Shopify Sellers (`Multi-Warehouse Stock Comparison Sheet`):** Audit stock distribution and unlinked SKU quantities across internal warehouses, 3PL nodes, and online sales channels from a single file.
+
+*Note: This Excel workbook does not replace live barcode scanners, real-time API inventory sync apps, or your WMS. It acts as your independent **audit and reconciliation layer** to catch the sync failures and physical shrinkage that automated software misses.*
+
+---
+
+## Real-World Scenarios: How to Solve Common Shopify & 3PL Inventory Problems
+
+If your operations or finance team runs into any of these recurring inventory headaches, this spreadsheet is structured to solve them out of the box:
+
+* **How to Prevent Overselling During Black Friday / Cyber Monday (Q4 Peak Season):** Shopify shows 100 units available, but your 3PL only has 20 on the shelf. Run this reconciliation weekly during Q4 to catch "ghost inventory" and sync your storefront counts before customers buy out-of-stock items.
+* **How to Prove 3PL Lost Inventory and Claim SLA Reimbursements:** Your fulfillment partner loses high-ticket SKUs beyond their 1.5% contractual shrinkage allowance. Paste your WMS shipment logs and the 3PL's physical count into the template to generate an itemized dollar-loss report for your reimbursement claim.
+* **How to Calculate Month-End Inventory Shrinkage for Ecommerce Accounting:** Your bookkeeper needs an exact dollar figure for lost or damaged stock to close the monthly P&L. Use the COGS-weighted dashboard total to book accurate inventory write-off journal entries in minutes.
+* **How to Reconcile Messy Warehouse CSV Exports Without Broken `VLOOKUP` Formulas:** Different systems export SKU codes with extra spaces or inconsistent formatting. Drop the raw exports into the import tabs and let the template align and compare every SKU automatically.
+
+---
+
+## About Theseus Workshop
+
+**Theseus Workshop** builds plug-and-play Microsoft Excel models and browser-based decision tools for operators who need clear, reliable numbers today—without enterprise software bloat or complex spreadsheet programming.
+
+Every tool is designed around one practical question:
+
+> **"What exact operational and financial numbers need to sit in one pre-built table so your next business decision takes seconds instead of hours?"**
+
+If you want to stop wrestling with broken `VLOOKUP` sheets, surprise stockouts, and uncompensated 3PL inventory losses, grab the full Excel template below or explore our complete library of operational spreadsheets:
+
+* 📥 **Get This Inventory Reconciliation Template:** [Download the Unlocked Shopify & 3PL Inventory Reconciliation Excel Template (.xlsx)](https://www.theseusworkshop.com/l/ddongr?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=inventory-reconciliation-shrinkage)
+* 🌐 **Test the Free Web Calculator:** [Open the Interactive 3PL Inventory Reconciliation Browser Simulator](https://hyvoid.github.io/MULTI-NODE-INVENTORY-RECONCILIATION/)
+* 🧰 **Explore All Ready-to-Use Excel Models & Business Toolkits:** [Visit the Official Theseus Workshop Store at TheseusWorkshop.com](https://www.google.com/search?q=https://www.theseusworkshop.com%3Futm_source%3Dgithub%26utm_medium%3DGitHub%2520README%26utm_campaign%3Dreadme%2520new%2520launch%26utm_content%3Dinventory-readme-store-link)
+
+---
 
 
 ## Technical Details
