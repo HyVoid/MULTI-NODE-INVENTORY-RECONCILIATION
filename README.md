@@ -1,9 +1,8 @@
 [ 🌐 عربي ](README.ar.md) | [ 🇩🇪 Deutsch ](README.de.md) | [ 🇫🇷 Français ](README.fr.md) | [ 🇳🇱 Nederlands ](README.nl.md) | [ 🇪🇸 Español ](README.sp.md) | [ 🇬🇧 English ](README.md)
 
-# Multi-Node Inventory Reconciliation & Shrinkage Analysis | Shopify & 3PL Excel Template
+# Shopify & 3PL Inventory Reconciliation Excel Template: Warehouse Stock Discrepancy, Cycle Count Variance & Shrinkage Cost Calculator
 <img width="1920" height="790" alt="image" src="https://github.com/user-attachments/assets/6689bffe-1aac-43d7-9f63-6e85a14470f0" />
 
-# Shopify & 3PL Inventory Reconciliation Excel Template: Warehouse Stock Discrepancy, Cycle Count Variance & Shrinkage Cost Calculator
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](#license)
 [![Platform: Web Browser + Microsoft Excel (.xlsx)](https://img.shields.io/badge/Platform-Web%20Browser%20%2B%20Microsoft%20Excel%20(.xlsx)-217346.svg)](#quick-start-tutorial-how-to-reconcile-shopify-wms--3pl-inventory-in-4-steps)
@@ -16,7 +15,7 @@
 Every SKU matching rule, text-cleaning formula, and dollar-variance calculation is already built in. Copy and paste your raw CSV exports from Shopify, your WMS, and your 3PL to see your exact stock discrepancies and financial loss exposure in seconds—backed by a 30-day, no-questions-asked money-back guarantee.
 
 > 🌐 **Try the Online Reconciliation Calculator First**  
-> [Launch the Free Interactive Shopify & 3PL Inventory Reconciliation Web Calculator (Browser Demo, Zero Setup Required)](https://hyvoid.github.io/MULTI-NODE-INVENTORY-RECONCILIATION/)
+> [Launch the Free Interactive Shopify & 3PL Inventory Reconciliation Web Calculator (Browser Demo, Zero Setup Required)](https://hyvoid.github.io/multi-node-inventory-reconciliation/)
 > 
 > 📥 **Download the Ready-to-Use Excel Template**  
 > [Get the Unlocked Multi-Node Inventory Reconciliation & Shrinkage Audit Excel Template (.xlsx with Auto-Updating Formulas)](https://www.theseusworkshop.com/l/ddongr?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=inventory-reconciliation-shrinkage)
@@ -48,7 +47,7 @@ Open the `Config_Master` tab to set your baseline inventory rules:
 - Paste your master **SKU List** and **Unit Cost of Goods Sold (COGS)**.
 - Set your custom **Discrepancy Warning Thresholds** (for example, flag any SKU with more than a `5-unit` gap or more than `$100` in missing inventory value).
 
-*Preview it live:* See how the master configuration table works right now in the [Free Online 3PL Inventory Reconciliation Browser Calculator](https://hyvoid.github.io/MULTI-NODE-INVENTORY-RECONCILIATION/).
+*Preview it live:* See how the master configuration table works right now in the [Free Online 3PL Inventory Reconciliation Browser Calculator](https://hyvoid.github.io/multi-node-inventory-reconciliation/).
 
 ---
 
