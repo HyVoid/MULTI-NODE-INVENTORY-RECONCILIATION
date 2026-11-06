@@ -1,128 +1,177 @@
 [ 🌐 عربي ](README.ar.md) | [ 🇩🇪 Deutsch ](README.de.md) | [ 🇫🇷 Français ](README.fr.md) | [ 🇳🇱 Nederlands ](README.nl.md) | [ 🇪🇸 Español ](README.sp.md) | [ 🇬🇧 English ](README.md)
 
-# Multi-Node Inventory Reconciliation & Shrinkage Analysis | Plantilla Excel de Shopify y 3PL
-<img width="1920" height="790" alt="image" src="https://github.com/user-attachments/assets/6689bffe-1aac-43d7-9f63-6e85a14470f0" />
+# Plantilla Excel de conciliación de inventarios Shopify y 3PL: discrepancias de stock en almacén, variación de recuento cíclico y calculadora de costes de merma
+<img width="1102" height="790" alt="image" src="https://github.com/user-attachments/assets/3a637973-b460-4160-a098-eed931e2dc18" />
 
 
-[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](#licencia)
-[![Platform: Browser + Excel](https://img.shields.io/badge/Platform-Browser%20%2B%20Excel-217346.svg)](#tutorial-de-inicio-r%C3%A1pido-c%C3%B3mo-automatizar-tu-conciliaci%C3%B3n-de-inventario)
-[![Tool Type: Decision Support](https://img.shields.io/badge/Tool%20Type-Decision%20Support-2251FF.svg)](#qu%C3%A9-te-ayuda-a-seguir-puntos-de-dolor-de-inventario-vs-soluciones)
 
-**Una hoja de cálculo de conciliación de inventario automatizada y plantilla de análisis de mermas (shrinkage) diseñada para marcas de ecommerce multicanal. Compara al instante los niveles de stock de Shopify, los registros del sistema de gestión de almacén (WMS) interno y los recuentos físicos del operador logístico (3PL) para localizar discrepancias y traducir la pérdida de unidades en impacto financiero directo, sin escribir fórmulas VLOOKUP ni reconstruir informes cada mes.**
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](#license)
+[![Platform: Web Browser + Microsoft Excel (.xlsx)](https://img.shields.io/badge/Platform-Web%20Browser%20%2B%20Microsoft%20Excel%20(.xlsx)-217346.svg)](#quick-start-tutorial-how-to-reconcile-shopify-wms--3pl-inventory-in-4-steps)
+[![Tool Type: Plug-and-Play Ecommerce Inventory Spreadsheet](https://img.shields.io/badge/Tool%20Type-Plug--and--Play%20Inventory%20Spreadsheet-2251FF.svg)](#what-it-helps-you-track-ecommerce-inventory-pain-points-vs-solutions)
 
-**Sin registro. Sin instalación. Gratis en tu navegador.**
+**Una plantilla Excel (`.xlsx`) de conciliación de inventarios Shopify y 3PL lista para usar y una calculadora online gratuita de discrepancias de stock, diseñadas para marcas de ecommerce, operadores DTC y gestores de almacén que necesitan auditar los recuentos de inventario sin escribir fórmulas.** Compara **las cantidades del escaparate de Shopify**, los **registros internos del sistema de gestión de almacén (WMS)** y **los recuentos físicos cíclicos del operador logístico (3PL)** lado a lado, calcula la **merma de inventario ponderada por COGS ($)**, detén la **sobreventa por inventario fantasma** y genera **reclamaciones de reembolso al 3PL documentadas** en una sola hoja de cálculo preconfigurada.
 
-Prueba tus datos operativos al instante en la versión gratuita del navegador. Para cierres de mes recurrentes y seguridad de datos sin conexión, actualiza a la plantilla de Excel totalmente desbloqueada con una garantía de devolución de 30 días sin preguntas.
+**Prueba tus datos de SKU gratis en tu navegador ahora mismo, o descarga el archivo Excel desbloqueado para auditorías mensuales.**
 
-> 🌐 **Abrir el dashboard interactivo**  
-> [Prueba el simulador gratuito de conciliación de inventario 3PL en el navegador](https://hyvoid.github.io/MULTI-NODE-INVENTORY-RECONCILIATION/)
+Cada regla de emparejamiento de SKU, fórmula de limpieza de texto y cálculo de diferencias en dólares ya está incorporado. Copia y pega tus exportaciones CSV en bruto desde Shopify, tu WMS y tu 3PL para ver tus discrepancias de stock exactas y tu exposición a pérdidas financieras en segundos — con una garantía de devolución de 30 días sin preguntas.
+
+> 🌐 **Prueba primero la calculadora de conciliación online**  
+> [Lanza la calculadora web interactiva gratuita de conciliación de inventarios Shopify y 3PL (demo en navegador, sin configuración previa)](https://hyvoid.github.io/multi-node-inventory-reconciliation/)
 > 
-> 📥 **Obtener la hoja de cálculo reutilizable**  
-> [Descargar la plantilla Excel de merma de inventario y auditoría](https://www.theseusworkshop.com/l/ddongr?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=inventory-reconciliation-shrinkage)
+> 📥 **Descarga la plantilla Excel lista para usar**  
+> [Obtén la plantilla Excel desbloqueada de conciliación multinodo de inventarios y auditoría de mermas (.xlsx con fórmulas de actualización automática)](https://www.theseusworkshop.com/l/ddongr?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=inventory-reconciliation-shrinkage)
+>
+> *Tanto la calculadora gratuita del navegador como el libro de trabajo de Microsoft Excel descargable funcionan sobre exactamente las mismas tablas preconfiguradas de emparejamiento de SKU a tres bandas y de variaciones de COGS.*
 
 ---
 
-## Qué te ayuda a seguir: Puntos de dolor de inventario vs. Soluciones
+## Qué te ayuda a seguir: puntos de dolor de inventario en ecommerce vs. soluciones
 
-En lugar de limitarse a identificar que «los números no cuadran», esta herramienta traduce las diferencias brutas de stock en un plan de acción financiero.
+Descubrir que tus cifras de stock no cuadran es solo la mitad del problema — también necesitas saber dónde fueron a parar las unidades y cuánto dinero está en juego. Esta **hoja de cálculo de auditoría de inventario plug-and-play** resuelve los cinco puntos ciegos más comunes del control de inventario para marcas de ecommerce multicanal:
 
-| Punto de dolor de inventario ecommerce (El "porqué") | Solución de conciliación (El "cómo") |
-| :--- | :--- |
-| **Puntos ciegos entre sistemas:** No saber qué sistema (Shopify vs. 3PL vs. WMS) contiene la verdad sobre el stock disponible. | **Triangulación multinodo:** Alinea las cantidades reportadas por los sistemas lado a lado para ubicar con precisión dónde fallan las sincronizaciones de datos. |
-| **Merma financiera sin cuantificar:** Tratar una variación de 20 unidades de un artículo de $5 igual que la de uno de $50. | **Análisis de variación ponderado por COGS:** Multiplica las discrepancias de unidades por el coste del SKU para revelar la exposición real al castigo contable. |
-| **Fugas del operador logístico (3PL):** Sospechar que los socios de fulfillment pierden stock, pero carecer de pruebas sólidas para reclamaciones SLA. | **Seguimiento de la tasa de discrepancia:** Aísla las tasas de variación del 3PL frente al almacén interno para construir una base fáctica de reclamaciones contractuales por pérdidas. |
-| **Parálisis por análisis con datos brutos:** Recorrer miles de filas de hojas de recuento cíclico para encontrar errores. | **Dashboards basados en excepciones:** Clasifica automáticamente los "10 SKU con mayor valor de pérdida" para priorizar las investigaciones de gestión. |
-
----
-
-## Tutorial de inicio rápido: Cómo automatizar tu conciliación de inventario
-
-Transforma exportaciones desordenadas y multisource en una auditoría de inventario ejecutiva en cuatro pasos estructurados.
-
-### Paso 1: Configura tus datos maestros de SKU (configuración única)
-Ve a la hoja `Config_Master`. Define tu nomenclatura estándar de SKU, el coste unitario (COGS) y los umbrales de advertencia específicos del negocio (p. ej., marcar cualquier discrepancia > 5 unidades o > $100 de valor). Esta línea base garantiza que todos los datos entrantes se midan contra una única fuente de verdad.
-
-### Paso 2: Importa las exportaciones de WMS, 3PL y Shopify
-Evita la normalización manual de datos. Pega tus exportaciones CSV brutas directamente en sus pestañas designadas:
-*   `Import_Shopify` (La disponibilidad de tu tienda)
-*   `Import_WMS` (Los registros de tu almacén interno)
-*   `Import_3PL` (Los recuentos físicos de tu fulfillment externo)
-*Nota: El sistema está diseñado para ingerir exportaciones brutas directamente, sin eliminación manual de columnas ni reconstrucción.*
-
-### Paso 3: Genera el dashboard de merma y revisa las excepciones
-Ve al resultado de `Dashboard`. El motor de conciliación automatizado limpia el formato, alinea los SKU y calcula las discrepancias al instante. Revisa tus variaciones de inventario de mayor valor, la merma total y las tasas de exactitud entre nodos sin calcular manualmente una sola celda.
-
-### Paso 4: Establece una rutina y descarga para uso repetido
-Para tu primera auditoría, usa la versión del navegador para identificar problemas de stock inmediatos. Para establecer una cadencia robusta de control de inventario mensual, exporta el sistema para uso a largo plazo.
-
-👉 **Acción requerida:** Una vez validado tu flujo de trabajo, **[descarga aquí la plantilla Excel reutilizable de conciliación de inventario](https://www.theseusworkshop.com/l/ddongr?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=inventory-reconciliation-shrinkage)**. El mes siguiente, simplemente pega la nueva instantánea de inventario sobre los datos antiguos; todo el análisis de variación se actualizará automáticamente.
-
----
-
-## La lógica de negocio y la metodología
-
-Esta herramienta está diseñada en torno a principios de auditoría profesional, desplazando el foco de la agregación de datos a la protección proactiva de activos. Esta es la metodología operativa que impulsa el libro de trabajo:
-
-### 1. Metodología: Conciliación a tres bandas del inventario
-*   **El método:** Al igual que en las auditorías financieras de cuentas por pagar (AP), este marco emplea un **principio de conciliación a tres bandas** entre las ventas digitales (Shopify), el seguimiento interno (WMS) y el almacenamiento físico (3PL).
-*   **El impacto de negocio:** Elimina el «juego de culpas». Al triangular los datos, los gerentes de operaciones pueden identificar si un problema es un error de sincronización de la tienda (retraso de API) o una pérdida física de fulfillment (merma), reduciendo drásticamente el tiempo de resolución.
-
-### 2. Metodología: Priorización por valor financiero en riesgo (VaR)
-*   **El método:** Las discrepancias se ponderan inherentemente por el costo de los bienes vendidos (COGS). La capa de cálculo transforma la `Variación de unidades` en `Exposición al castigo contable financiero`.
-*   **El impacto de negocio:** Optimiza la asignación de mano de obra. En lugar de que el personal del almacén dedique 4 horas a investigar una variación de 50 unidades en sobres de plástico, el dashboard los redirige a investigar una variación de 3 unidades en electrónica de alto margen.
-
-### 3. Metodología: Informes basados en excepciones
-*   **El método:** La herramienta filtra miles de SKU coincidentes en una lista condensada de excepciones operativas según umbrales de tolerancia definidos por el usuario (p. ej., merma aceptable < 0.5%).
-*   **El impacto de negocio:** Crea **razonamiento productizado**. El director de la cadena de suministro no mira un vertedero de datos; mira una lista de tareas accionable para la corrección de procesos internos o la presentación de reclamaciones al 3PL.
-
----
-
-## Escenarios del mundo real: Cuándo usar esta plantilla de auditoría de inventario
-
-Este sistema está construido específicamente para puntos críticos de inflexión de la cadena de suministro donde la exactitud del stock físico dicta la salud financiera.
-
-*   **Escenario A: Cierre financiero de fin de mes.** Los equipos de finanzas necesitan una cifra exacta de castigo contable por COGS para contabilidad. Usa esta plantilla para calcular el valor en dólares exacto del inventario perdido en todos los almacenes el último día del mes.
-*   **Escenario B: Disputas contractuales de SLA con el 3PL.** Sospechas que tu socio de fulfillment pierde mercancía por encima de la tolerancia de merma del 1.5%. Usa la comparación multinodo para generar un informe de reclamación documentado de los SKU faltantes de alto valor.
-*   **Escenario C: Prevención de quiebres de stock en temporada alta (Q4/Black Friday).** Shopify muestra 100 unidades, pero el 3PL solo tiene 20. Ejecuta esta conciliación semanalmente durante el Q4 para detectar el «inventario fantasma» antes de que los clientes compren stock que físicamente no posees, evitando tasas masivas de reembolsos y tickets de soporte.
-
----
-
-## Problemas comunes de operaciones de inventario que esto resuelve
-
-| Problema de operaciones de inventario | Proceso manual en hoja de cálculo | Solución de plantilla automatizada |
+| Tema de búsqueda frecuente y objetivo de seguimiento | El punto de dolor diario de inventario en ecommerce (donde se filtra el dinero) | Cómo esta plantilla Excel preconfigurada lo corrige y lo sigue |
 | :--- | :--- | :--- |
-| **Tres sistemas dispares en desacuerdo** | Los operadores ejecutan manualmente `INDEX/MATCH` entre los archivos de Shopify, WMS y 3PL, aumentando el riesgo de referencias rotas. | Una capa de conciliación estandarizada alinea automáticamente todas las unidades de mantenimiento de stock (SKU). |
-| **Formato de datos exportados desordenado** | Las filas en blanco, los espacios finales y los SKU sensibles a mayúsculas crean errores falsos de discrepancia. | La capa de cálculo normaliza cadenas y tipos de datos antes de la verificación de variaciones. |
-| **La merma se mide solo en unidades** | La dirección ve un déficit de unidades pero no puede estimar con precisión el impacto en el COGS. | La matriz de costes de SKU incorporada convierte los déficits de cantidad en castigos contables financieros estimados. |
-| **Las excepciones grandes quedan enterradas en el detalle** | Los controladores escanean miles de filas y pasan por alto discrepancias de stock comercialmente fatales. | El dashboard ejecutivo destaca las tasas de error del 3PL, el stock muerto y los 10 artículos de mayor valor de pérdida. |
-| **Las pérdidas del 3PL son difíciles de sustanciar** | El inventario faltante sigue siendo una queja informal de almacén sin documentación. | Genera un libro de variaciones fáctico para respaldar reclamaciones formales de SLA al 3PL y reembolsos. |
+| **Discrepancias de stock Shopify vs. 3PL vs. WMS (`emparejamiento de inventario a 3 bandas`)** | Shopify dice que tienes 120 unidades, tu WMS dice 100 y tu 3PL dice 85 — sin que sepas qué sistema contiene el recuento real de stock. | Alinea **las cantidades de Shopify, WMS y 3PL lado a lado** por SKU para que puedas separar los retrasos de sincronización de TI de las pérdidas físicas reales del almacén. |
+| **Coste de merma de inventario y castigo contable por COGS (`impacto en $` vs. recuento de unidades)** | Tratar un faltante de 20 unidades en un inserto de embalaje de $2 con la misma urgencia que una pérdida de 20 unidades en un producto estrella de $75. | Multiplica las variaciones de unidades por el **coste unitario (COGS)** de cada SKU para calcular la **exposición exacta de merma en dólares ($)** destinada a castigos contables. |
+| **Stock perdido del 3PL y reclamaciones de reembolso SLA (auditoría de la `tolerancia de merma`)** | Sabes que tu centro de fulfillment pierde mercancía, pero careces de la prueba de variaciones a nivel de SKU necesaria para presentar una reclamación contractual. | Sigue las **tasas de discrepancia (%) entre el 3PL y el almacén interno** frente a tu límite contractual de merma para construir un registro de reembolsos basado en hechos. |
+| **Inventario fantasma y sobreventa en temporada alta (`prevención de quiebres de stock`)** | Shopify muestra más unidades disponibles de las que realmente hay en las estanterías del 3PL, lo que hace que los anuncios de pago generen pedidos que debes cancelar y reembolsar. | Marca cada SKU en el que **el stock digital del escaparate supera el stock físico del 3PL** para que corrijas los niveles de inventario antes de la sobreventa. |
+| **Parálisis por análisis del recuento cíclico (`Top 10 SKU por valor de pérdida`)** | Recorrer miles de filas de hojas de cálculo tras un recuento cíclico de almacén mientras se pasan por alto los 5 SKU que generan el 80% de tu pérdida financiera. | Filtra automáticamente las filas coincidentes y clasifica los **10 SKU con mayor pérdida en dólares** en un dashboard resumen para una acción inmediata. |
 
 ---
 
-## Para quién es: Roles y casos de uso
+## Tutorial de inicio rápido: cómo conciliar el inventario de Shopify, WMS y 3PL en 4 pasos
 
-Esta herramienta cierra la brecha entre el almacenamiento físico y el informe financiero. Está diseñada específicamente para:
+No necesitas habilidades avanzadas de Excel ni fórmulas `VLOOKUP` manuales para realizar una auditoría de almacén. Sigue estos cuatro pasos para convertir exportaciones CSV en bruto en un claro **informe de discrepancias y merma de inventario**:
 
-*   **Gerentes de operaciones ecommerce** que necesitan una *plantilla de conciliación de inventario Shopify* para sincronizar las tiendas digitales con los centros de fulfillment físicos.
-*   **Directores de cadena de suministro** que buscan una *alternativa de software de auditoría 3PL* para exigir responsabilidades a los socios externos por las tasas de merma contractuales.
-*   **Controladores de inventario y gerentes de almacén** que realizan *conciliaciones de recuento cíclico* mensuales entre múltiples nodos internos.
-*   **CFOs fraccionados y gerentes financieros** que requieren un método preciso para calcular la *merma de inventario y el impacto en el COGS* para los cierres contables de fin de mes.
-*   **Fundadores DTC** que necesitan una visión ejecutiva de la salud del inventario sin invertir en integraciones ERP complejas de seis cifras.
+### Paso 1: Introduce tu lista maestra de SKU, el COGS unitario y los umbrales de alerta (`Config_Master`)
+Abre la pestaña `Config_Master` para establecer tus reglas de inventario de referencia:
+- Pega tu **lista maestra de SKU** y tu **coste de bienes vendidos unitario (COGS)**.
+- Configura tus **umbrales de advertencia de discrepancia personalizados** (por ejemplo, marcar cualquier SKU con un faltante de más de `5 unidades` o más de `$100` en valor de inventario faltante).
 
-*Nota: Esta herramienta **no** está diseñada para reemplazar APIs en tiempo real, sistemas ERP ni escaneo de códigos de barras WMS en vivo. Es un marco periódico de apoyo a decisiones usado para auditar esos sistemas.*
+*Vista previa en vivo:* mira cómo funciona la tabla de configuración maestra ahora mismo en la [calculadora de navegador gratuita de conciliación de inventarios 3PL](https://hyvoid.github.io/multi-node-inventory-reconciliation/).
 
 ---
 
-## Acerca del creador
+### Paso 2: Copia y pega tus exportaciones CSV en bruto de Shopify, WMS y 3PL
+Olvídate del formateo manual de columnas y de la limpieza de texto. Pega tus exportaciones de inventario en bruto directamente en las tres pestañas de entrada:
+- `Import_Shopify`: tu CSV de inventario de productos de Shopify (niveles de stock del escaparate).
+- `Import_WMS`: tu informe de stock interno del sistema de gestión de almacén o del ERP.
+- `Import_3PL`: el recuento físico cíclico o el informe de inventario final de tu socio de fulfillment (compatible con exportaciones de ShipBob, ShipMonk, Flexport, Amazon MCF y portales 3PL personalizados).
+- **Cero arrastre manual de fórmulas:** las tablas preconfiguradas limpian los espacios sobrantes, alinean los códigos SKU y se expanden automáticamente al pegar nuevas filas.
 
-Construyo rastreadores operativos ligeros y herramientas de apoyo a decisiones para situaciones donde hay demasiadas variables en movimiento para sostenerlas en la cabeza, pero insuficiente complejidad como para justificar otro sistema empresarial.
+---
 
-La pregunta central es simple: **¿Qué información debe estar en un lugar centralizado antes de poder tomar con confianza la próxima decisión estratégica de la cadena de suministro?**
+### Paso 3: Consulta tu dashboard de merma y el Top 10 de SKU por valor de pérdida (`Dashboard`)
+Cambia a la pestaña `Dashboard` para ver los resultados completos de tu auditoría:
+- Consulta el **valor total de merma de inventario ($)**, la **variación neta de unidades** y las **tasas de exactitud entre sistemas (%)** calculadas automáticamente.
+- Revisa la lista de **Top 10 SKU por valor de pérdida** para ver qué productos exactos necesitan un nuevo recuento físico en el almacén o un ajuste urgente de stock en Shopify.
 
-Este libro de trabajo de conciliación de inventario multinodo es un ejemplo de ese enfoque: convertir las comparaciones de stock recurrentes entre sistemas en un flujo de trabajo analítico estandarizado que conecta las discrepancias operativas con sus consecuencias financieras.
+---
+
+### Paso 4: Descarga la plantilla Excel desbloqueada para auditorías mensuales con un clic
+Usa la herramienta gratuita del navegador para probar tu flujo de trabajo y detectar huecos de stock inmediatos hoy mismo. Para guardar tus costes de SKU de referencia en local, ejecutar cierres contables mensuales recurrentes y construir un historial de reclamaciones al 3PL, descarga la hoja de cálculo `.xlsx` desbloqueada.
+
+> 💡 **Por qué las marcas de ecommerce en crecimiento usan esta plantilla Excel en lugar de construirla desde cero:**  
+> Limpiar cadenas de SKU desordenadas de tres exportaciones distintas, alinear filas no coincidentes y ponderar variaciones de stock por el COGS unitario implica una engorrosa ingeniería de hojas de cálculo. **En esta plantilla Excel, cada regla de emparejamiento a tres bandas, normalizador de texto y fórmula de actualización automática ya está construido para ti.**  
+> 
+> Ni siquiera necesitas hacer doble clic en las esquinas de las celdas ni arrastrar fórmulas hacia abajo. Descarga el libro de trabajo a tu ordenador, pega tus exportaciones mensuales de Shopify y del 3PL sobre los datos del mes anterior y obtén una auditoría financiera de merma actualizada con un clic. Incluso sin experiencia técnica en hojas de cálculo, obtienes visibilidad instantánea de la salud de tu inventario — liberándote para centrarte en el marketing, reabastecer los superventas y cerrar ventas durante los picos del Q4 y Black Friday mientras una sencilla plantilla de copiar y pegar se encarga de la conciliación de datos.  
+> 
+> 👉 **[Descarga hoy la plantilla Excel desbloqueada de conciliación de inventarios Shopify y 3PL (.xlsx) y automatiza tus auditorías de stock](https://www.theseusworkshop.com/l/ddongr?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=inventory-reconciliation-shrinkage)**
+
+---
+
+## La lógica de negocio y la metodología: 4 puntos ciegos de inventario que esta plantilla Excel resuelve por ti
+
+La mayoría de las marcas de ecommerce pierden miles de dólares por merma de inventario y sobreventa, no porque olviden contar el stock, sino porque las comprobaciones estándar a dos bandas y las hojas de cálculo básicas de unidades ocultan dónde se produce el daño financiero real. Así protege esta plantilla tu inventario y tu flujo de caja, en términos sencillos:
+
+### 1. Comparar solo dos sistemas oculta si se trata de un bug de TI o de un robo en el almacén (triangulación de inventario a 3 bandas)
+**El hecho objetivo:** si solo comparas Shopify (100 unidades) con tu 3PL (80 unidades), sabes que faltan 20 unidades, pero no sabes *por qué*. Esas 20 unidades pueden estar en pedidos no enviados porque falló un webhook de API, o 20 cajas físicas pudieron salir del almacén por la puerta trasera.  
+**Tu beneficio directo:** al emparejar **Shopify (escaparate digital) + WMS (registro interno) + 3PL (recuento físico de estanterías)** lado a lado en una misma fila, la plantilla aísla el punto exacto de ruptura:
+- Si `Shopify ≠ WMS`, pero `WMS = 3PL`: tienes un retraso de sincronización del escaparate o de pedidos pendientes de envío. Corrige la configuración de tu integración.
+- Si `Shopify = WMS`, pero `3PL < WMS`: el stock físico se perdió, se dañó o se contó mal en el centro de fulfillment. Presenta una reclamación al 3PL.
+
+### 2. Contar unidades faltantes en lugar de dólares faltantes desperdicia mano de obra de almacén (clasificación de variaciones ponderada por COGS)
+**El hecho objetivo:** una hoja de recuento cíclico estándar trata todas las unidades por igual. Si tu equipo ordena las discrepancias solo por número de unidades, pasará horas contando de nuevo suministros de embalaje baratos mientras ignora productos de alto coste que drenan silenciosamente tu margen. Mira cómo los recuentos brutos de unidades engañan a los equipos de almacén frente a la merma ponderada por COGS:
+
+```text
+SKU-A (Branded Poly-Mailer):   -50 Units Missing  ×  $0.20 Unit COGS  =   -$10.00 Financial Loss
+SKU-B (Wireless Headphones):    -4 Units Missing  × $115.00 Unit COGS =  -$460.00 Financial Loss
+
+```
+
+En una hoja de cálculo básica por número de unidades, `SKU-A` (-50 unidades) parece una emergencia mientras `SKU-B` (-4 unidades) parece un simple error de redondeo — a pesar de que `SKU-B` cuesta a tu negocio **46 veces más dinero**.
+
+**Tu beneficio directo:** la plantilla multiplica automáticamente cada discrepancia de unidades por su COGS unitario y clasifica tus **Top 10 SKU por valor de pérdida según impacto en dólares**. Tu equipo investiga primero la pérdida de $460 en lugar de perseguir $10 en sobres de envío.
+
+### 3. Los contratos de fulfillment con 3PL tienen plazos estrictos de reclamación y límites de merma (prueba documentada de reclamación SLA)
+
+**El hecho objetivo:** casi todos los contratos de logística tercerizada (3PL) incluyen una "tolerancia de merma" incorporada (normalmente el 0,5% al 2,0% del total de unidades gestionadas) y exigen que los comerciantes presenten pruebas de variación SKU por SKU dentro de los 15 a 30 días posteriores a un recuento cíclico para optar al reembolso. Las quejas enviadas por correo electrónico sin registros de variaciones estructurados son rechazadas de forma rutinaria por los gestores de cuenta del 3PL.
+
+**Tu beneficio directo:** la plantilla calcula **porcentajes exactos de discrepancia entre nodos** y genera una tabla limpia de variaciones a nivel de SKU que muestra el stock esperado, el recuento físico, el déficit de unidades y el valor en COGS — dándote documentación lista para enviar y recuperar dinero de tu 3PL.
+
+### 4. El "inventario fantasma" en Shopify quema el gasto publicitario pagado y desencadena reclamaciones de contracargo (detección de stock fantasma)
+
+**El hecho objetivo:** cuando tu tienda de Shopify cree que tienes 50 unidades en stock, tus anuncios de shopping de Meta y Google siguen gastando dinero para atraer tráfico a esa página de producto. Si tu 3PL en realidad tiene 0 unidades en la estantería ("inventario fantasma"), cada nuevo pedido de cliente se traduce en un retraso de fulfillment, una cancelación manual, comisiones de procesamiento de pago perdidas y tickets de soporte de clientes furiosos.
+
+**Tu beneficio directo:** la plantilla resalta cada SKU en el que la disponibilidad del escaparate supera el stock físico del almacén para que ajustes las cantidades de inventario de Shopify antes de sobrevender en eventos de venta de alto tráfico.
+
+---
+
+## Hojas de cálculo de inventario manuales (`VLOOKUP`) vs. esta plantilla automatizada de conciliación Shopify y 3PL
+
+| Factor de comparación de almacén y contabilidad | Hojas Excel manuales (`VLOOKUP` / `INDEX-MATCH` desde cero) | Plantilla estandarizada de conciliación de inventarios multinodo (esta herramienta) |
+| --- | --- | --- |
+| **Alineación de stock entre 3 sistemas (`Shopify` + `WMS` + `3PL`)** | El personal une manualmente tres archivos CSV distintos cada mes, con riesgo de referencias de celda rotas y SKU omitidos. | El **motor de emparejamiento a 3 bandas** preconfigurado alinea automáticamente las cantidades de Shopify, WMS y 3PL en cuanto pegas tus exportaciones. |
+| **Formato CSV desordenado y SKU no coincidentes** | Los espacios finales, los ceros iniciales y los códigos SKU en mayúsculas/minúsculas generan falsos errores `#N/A` en miles de filas. | Una **capa de normalización de texto** integrada limpia los espacios en blanco y estandariza las cadenas de SKU antes de calcular las diferencias de stock. |
+| **Valoración financiera de la merma (`castigo contable por COGS`)** | Los informes solo muestran cantidades de unidades faltantes, obligando a los contables a buscar costes de producto manualmente en el cierre mensual. | Una **matriz de costes de SKU** integrada convierte cada escasez de unidades en una **exposición exacta de merma en dólares ($)** para asientos contables. |
+| **Filtrado de excepciones (`SKU con mayores pérdidas`)** | Los gestores recorren más de 5.000 filas coincidentes intentando detectar qué productos tienen huecos de stock peligrosos. | El **dashboard de excepciones automatizado** filtra las filas normales y clasifica automáticamente los **10 SKU con mayor pérdida en dólares**. |
+| **Documentación de reembolsos SLA del 3PL** | Las unidades faltantes del almacén se discuten informalmente por correo electrónico, sin porcentajes de exactitud históricos ni totales en dólares. | Produce un **registro de variaciones y tasas de discrepancia del 3PL** listo para auditoría para sustanciar reclamaciones formales de crédito y reembolso SLA. |
+
+---
+
+## Para quién es: roles de ecommerce, casos de uso de inventario y flujos de trabajo de hojas de cálculo
+
+Esta caja de herramientas cierra la brecha entre las estanterías físicas del almacén y los estados financieros del ecommerce. Está construida para **marcas DTC en crecimiento, vendedores multicanal de Shopify, usuarios de 3PL y equipos financieros de ecommerce** que quieren un control de inventario fiable sin pagar más de $30.000 al año por un ERP empresarial:
+
+* **Propietarios de tiendas Shopify y fundadores de marcas DTC (`plantilla Excel de conciliación de inventarios Shopify`):** detecta stock fantasma e inventario faltante en el almacén en minutos, sin contratar a un analista de datos ni aprender fórmulas complejas de hojas de cálculo.
+* **Gestores de operaciones y fulfillment de ecommerce (`hoja de cálculo de auditoría de discrepancias de stock y SLA del 3PL`):** exija responsabilidades a los centros de fulfillment externos (como ShipBob, ShipMonk o 3PL regionales) siguiendo las tasas de merma mensuales frente a los límites SLA contractuales.
+* **Gestores de almacén y encargados de control de inventario (`calculadora plug-and-play de variación de recuento cíclico`):** concilia los recuentos físicos de ubicaciones con los registros del WMS tras recuentos cíclicos semanales o mensuales, priorizando los nuevos recuentos por el mayor valor en dólares en riesgo.
+* **Contables de ecommerce y CFOs externos (`modelo contable de merma de inventario y castigo por COGS`):** calcula ajustes exactos de valoración del inventario final y castigos contables de merma por COGS a fin de mes para QuickBooks Online, Xero o NetSuite.
+* **Vendedores multicanal de Amazon, Walmart y Shopify (`hoja de comparación de stock multialmacén`):** audita la distribución de stock y las cantidades de SKU sin vincular entre almacenes internos, nodos 3PL y canales de venta online desde un único archivo.
+
+*Nota: este libro de trabajo de Excel no sustituye a los escáneres de códigos de barras en tiempo real, a las aplicaciones de sincronización de inventario por API en vivo ni a tu WMS. Actúa como tu **capa independiente de auditoría y conciliación** para detectar los fallos de sincronización y la merma física que el software automatizado pasa por alto.*
+
+---
+
+## Escenarios del mundo real: cómo resolver problemas comunes de inventario de Shopify y 3PL
+
+Si tu equipo de operaciones o finanzas se encuentra con cualquiera de estos dolores de cabeza recurrentes de inventario, esta hoja de cálculo está estructurada para resolverlos de inmediato:
+
+* **Cómo prevenir la sobreventa durante el Black Friday / Cyber Monday (temporada alta del Q4):** Shopify muestra 100 unidades disponibles, pero tu 3PL solo tiene 20 en la estantería. Ejecuta esta conciliación semanalmente durante el Q4 para detectar el "inventario fantasma" y sincronizar los recuentos de tu escaparate antes de que los clientes compren artículos agotados.
+* **Cómo probar el inventario perdido del 3PL y reclamar reembolsos SLA:** tu socio de fulfillment pierde SKU de alto valor por encima de su tolerancia contractual de merma del 1,5%. Pega tus registros de envíos del WMS y el recuento físico del 3PL en la plantilla para generar un informe detallado de pérdidas en dólares para tu reclamación.
+* **Cómo calcular la merma de inventario a fin de mes para la contabilidad de ecommerce:** tu contable necesita una cifra exacta en dólares del stock perdido o dañado para cerrar el P&L mensual. Usa el total ponderado por COGS del dashboard para registrar asientos contables de castigo de inventario precisos en minutos.
+* **Cómo conciliar exportaciones CSV de almacén desordenadas sin fórmulas `VLOOKUP` rotas:** los distintos sistemas exportan códigos SKU con espacios de más o formato inconsistente. Suelta las exportaciones en bruto en las pestañas de importación y deja que la plantilla alinee y compare cada SKU automáticamente.
+
+---
+
+## Acerca de Theseus Workshop
+
+**Theseus Workshop** construye modelos de Microsoft Excel plug-and-play y herramientas de decisión basadas en navegador para operadores que necesitan números claros y fiables hoy mismo — sin software empresarial inflado ni programación compleja de hojas de cálculo.
+
+Cada herramienta está diseñada en torno a una pregunta práctica:
+
+> **"¿Qué cifras operativas y financieras exactas deben estar en una tabla preconfigurada para que tu próxima decisión de negocio tarde segundos en lugar de horas?"**
+
+Si quieres dejar de luchar contra hojas `VLOOKUP` rotas, quiebres de stock inesperados y pérdidas de inventario del 3PL sin compensar, descarga la plantilla Excel completa a continuación o explora nuestra biblioteca completa de hojas de cálculo operativas:
+
+* 📥 **Descarga esta plantilla de conciliación de inventarios:** [Descarga la plantilla Excel desbloqueada de conciliación de inventarios Shopify y 3PL (.xlsx)](https://www.theseusworkshop.com/l/ddongr?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=inventory-reconciliation-shrinkage)
+* 🌐 **Prueba la calculadora web gratuita:** [Abre el simulador de navegador interactivo de conciliación de inventarios 3PL](https://hyvoid.github.io/MULTI-NODE-INVENTORY-RECONCILIATION/)
+* 🧰 **Explora todos los modelos Excel listos para usar y cajas de herramientas de negocio:** [Visita la tienda oficial de Theseus Workshop en TheseusWorkshop.com](https://www.google.com/search?q=https://www.theseusworkshop.com%3Futm_source%3Dgithub%26utm_medium%3DGitHub%2520README%26utm_campaign%3Dreadme%2520new%2520launch%26utm_content%3Dinventory-readme-store-link)
+
+---
 
 
-## Detalles Técnicos
+## Detalles técnicos
 
 <details>
 <summary>Para revisores técnicos, profesionales de Excel y colaboradores</summary>
@@ -169,7 +218,7 @@ El libro de trabajo se divide en seis hojas funcionales:
 
 | Hoja             | Capa          | Responsabilidad                                                           | Usuario principal       |
 | ---------------- | ------------- | ------------------------------------------------------------------------- | ---------------------- |
-| `Dashboard`      | Decisión      | Resumen de KPI, exposición a pérdidas, comparación de nodos, Top 10 de excepciones | Dirección / Gerencia    |
+| `Dashboard`      | Decisión      | Resumen de KPI, exposición a pérdidas, comparación de nodos, Top 10 de excepciones            | Dirección / Gerencia    |
 | `Config_Master`  | Configuración | Lista estándar de SKU, información de producto, coste unitario, umbrales de discrepancia | Operaciones / Finanzas  |
 | `Import_Shopify` | Entrada       | Exportación bruta de inventario de Shopify                                 | Operaciones             |
 | `Import_WMS`     | Entrada       | Exportación bruta de inventario del WMS interno                            | Almacén / Operaciones   |
@@ -295,14 +344,14 @@ Which exceptions should be investigated?
 Is a process correction or 3PL claim required?
 ```
 
-Por eso este libro de trabajo se entiende mejor como una **capa de apoyo a decisiones** que como una simple hoja de cálculo de comparación de inventario.
+Por eso este libro de trabajo se entiende mejor como una **capa de apoyo a decisiones** que como una simple hoja de cálculo de comparación de inventarios.
 
 ### Tres trampas que atrapan incluso a operadores de inventario con experiencia
 
 #### Trampa 1 — Tratar cada diferencia de cantidad como merma
 
 **Decisión:**
-Un operador ve que Shopify reporta 1.000 unidades mientras el 3PL reporta 970 y registra de inmediato 30 unidades como perdidas.
+Un operador ve que Shopify reporta 1,000 unidades mientras el 3PL reporta 970 y registra de inmediato 30 unidades como perdidas.
 
 **Número defectuoso:**
 La comparación usa instantáneas tomadas en momentos diferentes.
@@ -439,7 +488,7 @@ Las instantáneas importadas reportan:
 
 | Fuente  | Cantidad |
 | ------- | -------: |
-| Shopify |    1.000 |
+| Shopify |    1,000 |
 | WMS     |      992 |
 | 3PL     |      970 |
 
@@ -469,7 +518,7 @@ Si la variación de 22 unidades del 3PL permanece sin explicar tras revisar el m
 
 La implicación para la dirección es por tanto diferente de una advertencia genérica de inventario.
 
-La siguiente acción no es inspeccionar cada SKU por igual. El operador debe investigar primero la **excepción del lado del 3PL**, verificar si la variación representa pérdida física, daño, timing o un problema de reporte, y luego determinar si la discrepancia excede la tolerancia contractual o interna de la empresa.
+La siguiente acción no es inspeccionar cada SKU por igual. El operador debe investigar primero la **excepción del lado del 3PL**, verificar si la variación representa pérdida física, daño, un problema de timing o de reporte, y luego determinar si la discrepancia excede la tolerancia contractual o interna de la empresa.
 
 El dashboard está diseñado para hacer visible esta priorización: la dirección puede ver la exposición financiera total, la distribución de la pérdida entre nodos y las excepciones de SKU de mayor valor sin escanear manualmente las exportaciones brutas.
 
@@ -626,7 +675,7 @@ La fuente recomienda específicamente no forzar estos problemas dentro de un lib
 * seguimiento GPS en tiempo real del inventario en tránsito;
 * flujos de trabajo de gestión de transporte.
 
-Estos requieren un TMS dedicado, no una hoja de conciliación de inventario.
+Estos requieren un TMS dedicado, no una hoja de conciliación de inventarios.
 
 Este límite es intencional. El propósito del libro de trabajo es proporcionar una **capa repetible de conciliación y análisis de pérdidas financieras**, no pretender que cada problema de control de inventario sea un problema de Excel.
 
@@ -674,7 +723,7 @@ No puede:
 * proporcionar seguimiento GPS en tiempo real del inventario en tránsito;
 * resolver problemas históricos de datos maestros de SKU sin una decisión de mapeo adecuada.
 
-Estos límites son explícitos en el diseño fuente. La conciliación estandarizada, la valoración de discrepancias, la clasificación de excepciones y el reporte de dashboard se consideran problemas apropiados para Excel. La disciplina de recuento cíclico y la gestión de reclamaciones al 3PL requieren controles de gestión; la sincronización de API en tiempo real pertenece a la integración de sistemas; el seguimiento de envíos físicos pertenece a un TMS.
+Estos límites son explícitos en el diseño fuente. La conciliación estandarizada, la valoración de discrepancias, la clasificación de excepciones y el reporte del dashboard se consideran problemas apropiados para Excel. La disciplina de recuento cíclico y la gestión de reclamaciones al 3PL requieren controles de gestión; la sincronización de API en tiempo real pertenece a la integración de sistemas; el seguimiento de envíos físicos pertenece a un TMS.
 
 También hay importantes restricciones de interpretación.
 
@@ -693,10 +742,12 @@ Por tanto, el libro de trabajo debe usarse como un **mecanismo de investigación
 
 Una colección de herramientas ligeras de apoyo a decisiones en Excel que cubren control operativo, conciliación, rentabilidad, inventario y análisis financiero.
 
-* **Inventory Planning & Reorder Control** — demanda, reposición, exposición de inventario y decisiones de compra.
-* **Order-Level Profit Engine** — ingresos, costes variables, asignación de envío y rentabilidad por pedido.
-* **Single-Project Construction Control** — presupuesto de proyecto, compromisos, costes de obra y rentabilidad del proyecto.
-* **Contractor Operations & Profitability Management System** — flujo de trabajo Lead → Estimación → Obra → Mano de obra y materiales → Coste de obra → Beneficio → Historial del cliente.
+* **[inventory-planning-reorder-point-excel](https://github.com/HyVoid/inventory-planning-reorder-point-excel)** — ¿Qué decisión de compra debe tomarse hoy dadas las tendencias de demanda, los plazos de entrega y las restricciones de caja? — Prevé las necesidades de inventario combinando señales de demanda, riesgo de plazo, recomendaciones de compra y exposición del capital de trabajo.
+* **[Retail-SKU-Concentration-Assortment-Diagnostic-Console](https://github.com/HyVoid/Retail-SKU-Concentration-Assortment-Diagnostic-Console)** — ¿Qué productos dominan el riesgo de inventario o diluyen la calidad del surtido? — Identifica el riesgo de concentración de SKU y la eficiencia del surtido en catálogos de productos minoristas.
+* **[Retail-and-Maquila-Inventory-Ledger](https://github.com/HyVoid/Retail-and-Maquila-Inventory-Ledger)** — ¿Dónde se mueve el inventario entre las operaciones minoristas y de maquila? — Sigue los movimientos de inventario, las pérdidas de procesamiento y la exposición de stock entre fábricas, almacenes y tiendas.
+* **[Universal-3D-Cargo-Loading-Optimization-Simulator](https://github.com/HyVoid/Universal-3D-Cargo-Loading-Optimization-Simulator)** — ¿Cómo debe cargarse la mercancía para reducir el espacio desperdiciado y la fricción operativa? — Simula configuraciones de carga 3D para maximizar la capacidad de contenedores y la eficiencia de envío.
+* **[Cross-Border-DTC-Inventory-Governance-Console](https://github.com/HyVoid/Cross-Border-DTC-Inventory-Governance-Console)** — ¿Cuál es la demanda real de compra tras eliminar los compromisos de preventa y las devoluciones esperadas? — Reconstruye señales de demanda reales aislando las obligaciones de preventa y el comportamiento de devolución de los datos de ventas brutos.
+* **[inventory-allocation-fulfillment-excel](https://github.com/HyVoid/inventory-allocation-fulfillment-excel)** — ¿Puede cada pedido de cliente entregarse realmente a tiempo dado el stock físico, las reservas, los contenedores en tránsito y las órdenes de compra abiertas en todas nuestras ubicaciones? — Calcula las cantidades disponibles para prometer y las necesidades netas de aprovisionamiento conciliando el stock físico, las reservas de pedidos, el inventario en tránsito y las órdenes de compra abiertas en múltiples ubicaciones.
 
 ## Licencia
 
@@ -705,3 +756,4 @@ Este proyecto se publica bajo la **Licencia Apache 2.0**.
 Puede usar, modificar, distribuir y adaptar el proyecto conforme a los términos y condiciones de la Licencia Apache 2.0.
 
 Consulta el archivo de licencia del repositorio para ver el texto completo de la licencia.
+

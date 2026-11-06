@@ -1,125 +1,174 @@
 [ 🌐 عربي ](README.ar.md) | [ 🇩🇪 Deutsch ](README.de.md) | [ 🇫🇷 Français ](README.fr.md) | [ 🇳🇱 Nederlands ](README.nl.md) | [ 🇪🇸 Español ](README.sp.md) | [ 🇬🇧 English ](README.md)
 
-# Multi-Node Inventory Reconciliation & Shrinkage Analysis | Shopify & 3PL Excel-sjabloon
-<img width="1920" height="790" alt="image" src="https://github.com/user-attachments/assets/6689bffe-1aac-43d7-9f63-6e85a14470f0" />
+# Voorraadreconciliatie Excel-sjabloon voor Shopify & 3PL: magazijnvoorraadverschillen, cyclustelling-variantie & shrinkagekosten-calculator
+<img width="1102" height="790" alt="image" src="https://github.com/user-attachments/assets/3a637973-b460-4160-a098-eed931e2dc18" />
 
 
-[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](#licentie)
-[![Platform: Browser + Excel](https://img.shields.io/badge/Platform-Browser%20%2B%20Excel-217346.svg)](#korte-handleiding-hoe-je-je-voorraadreconciliatie-automatiseert)
-[![Tool Type: Decision Support](https://img.shields.io/badge/Tool%20Type-Decision%20Support-2251FF.svg)](#wat-het-je-laat-volgen-voorraadpijnpunten-vs-oplossingen)
 
-**Een geautomatiseerde reconciliatiespreadsheet en sjabloon voor shrinkage-analyse, ontworpen voor multichannel e-commerce merken. Vergelijk direct de Shopify-voorraadniveaus, de registraties van je interne Warehouse Management System (WMS) en de fysieke tellingen van je Third-Party Logistics (3PL)-partner om discrepanties te lokaliseren en eenheidsverlies te vertalen naar directe financiële impact, zonder VLOOKUP-formules te schrijven of elke maand rapporten opnieuw te bouwen.**
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](#license)
+[![Platform: Web Browser + Microsoft Excel (.xlsx)](https://img.shields.io/badge/Platform-Web%20Browser%20%2B%20Microsoft%20Excel%20(.xlsx)-217346.svg)](#quick-start-tutorial-how-to-reconcile-shopify-wms--3pl-inventory-in-4-steps)
+[![Tool Type: Plug-and-Play Ecommerce Inventory Spreadsheet](https://img.shields.io/badge/Tool%20Type-Plug--and--Play%20Inventory%20Spreadsheet-2251FF.svg)](#what-it-helps-you-track-ecommerce-inventory-pain-points-vs-solutions)
 
-**Geen registratie. Geen installatie. Gratis in je browser.**
+**Een kant-en-klaar Shopify & 3PL voorraadreconciliatie Excel-sjabloon (`.xlsx`) en een gratis online voorraadverschillen-calculator, gebouwd voor e-commerce merken, DTC-operatoren en magazijnmanagers die voorraadtellingen willen auditen zonder zelf formules te schrijven.** Vergelijk **Shopify-webwinkel voorraadniveaus**, interne **Warehouse Management System (WMS)-registraties** en **fysieke cyclustellingen van je Third-Party Logistics (3PL)-partner** naast elkaar, bereken de **COGS-gewogen voorraadshrinkage ($)**, stop **oververkopen door spookvoorraad** en genereer **gedocumenteerde 3PL-terugvorderingsclaims** in één voorgebouwde spreadsheet.
 
-Test je operationele data direct in de gratis browserversie. Voor terugkerende maandafsluitingen en offline gegevensbeveiliging upgrade je naar het volledig ontgrendelde Excel-sjabloon met een 30-daagse geld-terug-garantie zonder vragen.
+**Test je SKU-data nu gratis in je browser, of download het ontgrendelde Excel-bestand voor maandelijkse audits.**
 
-> 🌐 **Open het interactieve dashboard**  
-> [Probeer de gratis browsergebaseerde 3PL voorraadreconciliatie-simulator](https://hyvoid.github.io/MULTI-NODE-INVENTORY-RECONCILIATION/)
+Elke SKU-matchregel, tekstopschoonformule en dollarafwijking-berekening is al ingebouwd. Kopieer en plak je ruwe CSV-exports uit Shopify, je WMS en je 3PL om binnen enkele seconden je exacte voorraadverschillen en financiële verliesexposure te zien — met een 30-daagse geld-terug-garantie zonder vragen.
+
+> 🌐 **Probeer eerst de online reconciliatiecalculator**  
+> [Start de gratis interactieve webcalculator voor Shopify & 3PL voorraadreconciliatie (browserdemo, geen installatie nodig)](https://hyvoid.github.io/multi-node-inventory-reconciliation/)
 > 
-> 📥 **Download de herbruikbare spreadsheet**  
-> [Download het voorraadshrinkage- & audit Excel-sjabloon](https://www.theseusworkshop.com/l/ddongr?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=inventory-reconciliation-shrinkage)
+> 📥 **Download het kant-en-klare Excel-sjabloon**  
+> [Download het ontgrendelde multi-node voorraadreconciliatie- & shrinkage-audit Excel-sjabloon (.xlsx met automatisch bijwerkende formules)](https://www.theseusworkshop.com/l/ddongr?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=inventory-reconciliation-shrinkage)
+>
+> *Zowel de gratis browsercalculator als de downloadbare Microsoft Excel-werkmap draaien op exact dezelfde voorgeconfigureerde 3-weg SKU-matching en COGS-variantietabellen.*
 
 ---
 
-## Wat het je laat volgen: Voorraadpijnpunten vs. Oplossingen
+## Wat het je laat volgen: e-commerce voorraadpijnpunten vs. oplossingen
 
-In plaats van slechts te constateren dat "de cijfers niet kloppen", vertaalt deze toolkit ruime voorraadverschillen naar een financieel actieplan.
+Ontdekken dat je voorraadcijfers niet kloppen is slechts de helft van het probleem — je moet ook weten waar de units zijn gebleven en hoeveel geld op het spel staat. Deze **plug-and-play voorraadaudit-spreadsheet** lost de vijf meest voorkomende blinde vlekken in voorraadbeheersing op voor multichannel e-commerce merken:
 
-| E-commerce voorraadpijnpunt (Het "waarom") | Reconcilieoplossing (Het "hoe") |
-| :--- | :--- |
-| **Blind spots tussen systemen:** Niet weten welk systeem (Shopify vs. 3PL vs. WMS) de waarheid over de beschikbare voorraad bewaart. | **Multi-node triangulatie:** Legt de door systemen gerapporteerde hoeveelheden naast elkaar om precies te lokaliseren waar datasynchronisaties mislukken. |
-| **Ongekwantificeerde financiële shrinkage:** Een afwijking van 20 stuks op een artikel van $5 gelijk behandelen aan die van een artikel van $50. | **COGS-gewogen variantieanalyse:** Vermenigvuldigt eenheidsdiscrepanties met de SKU-kostprijs om de werkelijke financiële afboekingsblootstelling te onthullen. |
-| **Leckage bij derde-partij-logistiek (3PL):** Het vermoeden dat fulfillmentpartners voorraad verliezen, zonder hard bewijs voor SLA-claims. | **Volgen van discrepantietarieven:** Isoleert de variantietarieven van 3PL versus intern magazijn om een feitelijke basis op te bouwen voor contractuele verliesclaims. |
-| **Analyseparalyse door ruwe data:** Duizenden rijen cyclustelling-spreadsheets doorscrollen om fouten te vinden. | **Uitzonderingsgestuurd dashboarden:** Rangschikt automatisch de "Top 10 SKU's naar verlieswaarde" om managementonderzoek te prioriteren. |
-
----
-
-## Korte handleiding: Hoe je je voorraadreconciliatie automatiseert
-
-Transformeer rommelige, multi-bron exports in een executive voorraadaudit in vier gestructureerde stappen.
-
-### Stap 1: Configureer je SKU-stamgegevens (eenmalige setup)
-Ga naar het `Config_Master`-werkblad. Definieer je standaard SKU-nomenclatuur, de kostprijs per eenheid (COGS) en de bedrijfsspecifieke waarschuwingsdrempels (bijv. markeer elke discrepantie > 5 stuks of > $100 waarde). Deze baseline zorgt ervoor dat alle inkomende data wordt gemeten tegen één enkele bron van waarheid.
-
-### Stap 2: Importeer WMS-, 3PL- en Shopify-exports
-Omzeil handmatige datanormalisatie. Plak je ruwe CSV-exports direct in de aangewezen tabbladen:
-*   `Import_Shopify` (De beschikbaarheid van je webwinkel)
-*   `Import_WMS` (De registraties van je interne magazijn)
-*   `Import_3PL` (De fysieke tellingen van je externe fulfillmentpartner)
-*Opmerking: Het systeem is ontworpen om ruwe exports direct te verwerken, zonder handmatig kolommen te verwijderen of te herbouwen.*
-
-### Stap 3: Genereer het shrinkage-dashboard en bekijk de uitzonderingen
-Ga naar de `Dashboard`-uitvoer. De geautomatiseerde reconciliatie-engine schoont direct de opmaak op, stemt SKU's af en berekent discrepanties. Bekijk je voorraadafwijkingen met de hoogste waarde, de totale shrinkage en de nauwkeurigheidstarieven per node zonder handmatig één enkele cel te berekenen.
-
-### Stap 4: Bouw een routine op en download voor herhaald gebruik
-Gebruik voor je eerste audit de browserversie om directe voorraadproblemen te identificeren. Om een robuuste maandelijkse voorraadbeheersritme op te bouwen, exporteer je het systeem voor langetermijngebruik.
-
-👉 **Actie vereist:** Zodra je workflow is gevalideerd, **[download je hier de herbruikbare voorraadreconciliatie Excel-sjabloon](https://www.theseusworkshop.com/l/ddongr?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=inventory-reconciliation-shrinkage)**. Volgende maand plak je simpelweg de nieuwe voorraadsnapshot over de oude data; de volledige variantieanalyse wordt automatisch vernieuwd.
-
----
-
-## De bedrijfslogica & methodiek
-
-Deze toolkit is ontworpen rond professionele auditprincipes en verschuift de focus van data-aggregatie naar proactieve activabescherming. Dit is de operationele methodiek die de werkmap aandrijft:
-
-### 1. Methodiek: Drievoudige voorraadafstemming
-*   **De methode:** Vergelijkbaar met financiële audits van schulden aan leveranciers (AP), hanteert dit raamwerk een **drievoudig afstemmingsprincipe** tussen digitale verkoop (Shopify), interne tracking (WMS) en fysieke opslag (3PL).
-*   **De zakelijke impact:** Het stopt het «schuldenspel». Door data te trianguleren kunnen operations managers vaststellen of een probleem een storefront-synchronisatiefout is (API-vertraging) of een fysiek fulfilmentverlies (shrinkage), wat de oplostijd drastisch verkort.
-
-### 2. Methodiek: Prioritering op financieel waarde-at-risk (VaR)
-*   **De methode:** Discrepanties worden inherent gewogen op basis van de kosten van verkochte goederen (COGS). De rekenlaag transformeert `Stuksafwijking` in `Financiële afboekingsblootstelling`.
-*   **De zakelijke impact:** Het optimaliseert de arbeidsallocatie. In plaats van dat magazijnmedewerkers 4 uur besteden aan het onderzoeken van een afwijking van 50 stuks in poly-mailers, stuurt het dashboard ze naar een afwijking van 3 stuks in elektronica met hoge marge.
-
-### 3. Methodiek: Uitzonderingsgestuurde rapportage
-*   **De methode:** De toolkit filtert duizenden matchende SKU's naar een gecondenseerde lijst operationele uitzonderingen op basis van door de gebruiker gedefinieerde tolerantiedrempels (bijv. acceptabele shrinkage < 0,5%).
-*   **De zakelijke impact:** Het creëert **geproduceerd redeneren**. De supply chain-directeur kijkt niet naar een datastort; hij kijkt naar een actiebare takenlijst voor interne procescorrectie of het indienen van 3PL-claims.
-
----
-
-## Scenario's uit de praktijk: Wanneer gebruik je dit voorraadaudit-sjabloon
-
-Dit systeem is specifiek gebouwd voor kritieke knooppunten in de supply chain waar fysieke voorraadnauwkeurigheid de financiële gezondheid bepaalt.
-
-*   **Scenario A: Financiële maandafsluiting.** Financeteams hebben een exact COGS-afboekingscijfer nodig voor de boekhouding. Gebruik dit sjabloon om de exacte dollarwaarde van verloren voorraad over alle magazijnen op de laatste dag van de maand te berekenen.
-*   **Scenario B: 3PL SLA-contractgeschillen.** Je vermoedt dat je fulfilmentpartner merchandising verliest boven de shrinkage-tolerantie van 1,5%. Gebruik de multi-node vergelijking om een gedocumenteerd claimrapport te genereren voor ontbrekende high-ticket SKU's.
-*   **Scenario C: Voorkomen van voorraaduitval in het hoogseizoen (Q4/Black Friday).** Shopify toont 100 stuks, maar de 3PL heeft er slechts 20. Voer deze reconciliatie wekelijks uit tijdens Q4 om «spookvoorraad» te vangen voordat klanten voorraad kopen die je fysiek niet bezit; zo voorkom je massale restituties en supporttickets.
-
----
-
-## Veelvoorkomende problemen in voorraadoperaties die dit oplost
-
-| Probleem in voorraadoperaties | Handmatig spreadsheetproces | Geautomatiseerde sjabloonoplossing |
+| Veelgezocht zoekonderwerp & volgdoel | Het dagelijkse e-commerce voorraadpijnpunt (waar geld weglekt) | Hoe dit voorgebouwde Excel-sjabloon het oplost en volgt |
 | :--- | :--- | :--- |
-| **Drie uiteenlopende systemen zijn het oneens** | Operator draait handmatig `INDEX/MATCH` over Shopify-, WMS- en 3PL-bestanden, met risico op kapotte verwijzingen. | Een gestandaardiseerde reconciliatielaag stemt alle stock keeping units (SKU's) automatisch af. |
-| **Rommlige opmaak van geëxporteerde data** | Lege rijen, spaties aan het einde en hoofdlettergevoelige SKU's veroorzaken valse mismatch-fouten. | De rekenlaag normaliseert strings en datatypen vóór de variantiecontrole. |
-| **Shrinkage wordt alleen in stuks gemeten** | Het management ziet een stukstekort maar kan de COGS-impact niet nauwkeurig inschatten. | De ingebouwde SKU-kostenmatrix zet hoeveelheidstekorten om in geschatte financiële afboekingen. |
-| **Grote uitzonderingen verdwijnen in het detail** | Controllers scannen duizenden rijen en missen commercieel fatale voorraaddiscrepanties. | Het executive dashboard belicht 3PL-fouttarieven, dode voorraad en de top 10 artikelen met verlieswaarde. |
-| **3PL-verliezen zijn moeilijk te onderbouwen** | Ontbrekende voorraad blijft een informele magazijnklacht zonder documentatie. | Genereert een feitelijke variantieledger ter ondersteuning van formele 3PL SLA-claims en terugbetalingen. |
+| **Shopify vs. 3PL vs. WMS voorraadverschillen (`3-weg voorraadmatching`)** | Shopify zegt dat je 120 units hebt, je WMS zegt 100 en je 3PL zegt 85 — zonder dat je weet welk systeem de echte voorraadtelling bevat. | Legt **Shopify-, WMS- en 3PL-hoeveelheden per SKU naast elkaar** zodat je IT-synchronisatievertragingen kunt scheiden van echte fysieke magazijnverliezen. |
+| **Shrinkagekosten & COGS-afboeking (`$`-impact vs. aantal units)** | Een verschil van 20 units op een $2 verpakkingsinvoegsel met dezelfde urgentie behandelen als een verlies van 20 units op een $75 toproduct. | Vermenigvuldigt unitvarianties met de **kostprijs per unit (COGS)** van elke SKU om de exacte **dollarschrinkage-exposure ($)** te berekenen voor boekhoudkundige afboekingen. |
+| **Verloren 3PL-voorraad & SLA-terugvorderingsclaims (`Shrinkage-toelage` audit)** | Je weet dat je fulfillmentcenter merchandise verliest, maar je mist het SKU-niveau variantiebewijs dat nodig is voor een contractuele claim. | Volgt de **discrepantiepercentages (%) 3PL vs. intern magazijn** tegen je contractuele shrinkage-plafond om een feitelijk terugvorderingsregister op te bouwen. |
+| **Spookvoorraad & oververkopen in het hoogseizoen (`voorraaduitval`-preventie)** | Shopify toont meer beschikbare units dan er echt op de 3PL-schappen liggen, waardoor betaalde advertenties orders genereren die je moet annuleren en terugbetalen — met verkoopbaarheid en marge als gevolg. | Vlagt elke SKU waar **digitale winkelvoorraad de fysieke 3PL-voorraad overschrijdt** zodat je voorraadniveaus corrigeert vóór het oververkopen. |
+| **Analyseparalyse bij cyclustelling (`Top 10 SKU's naar verlieswaarde`)** | Duizenden spreadsheetrijen doorscrollen na een magazijn-cyclustelling terwijl je de 5 SKU's mist die 80% van je financiële verlies veroorzaken. | Filtert automatisch overeenkomende rijen uit en rangschikt de **Top 10 SKU's met de hoogste dollarverlies** op één overzichtsdashboard voor directe actie. |
 
 ---
 
-## Voor wie is dit: Rollen & use cases
+## Snelstart-tutorial: hoe je Shopify-, WMS- & 3PL-voorraad in 4 stappen reconcilieert
 
-Deze tool overbrugt de kloof tussen fysieke magazijnvoering en financiële rapportage. Hij is doelbewust ontworpen voor:
+Je hebt geen geavanceerde Excel-vaardigheden of handmatige `VLOOKUP`-formules nodig om een magazijnaudit uit te voeren. Volg deze vier stappen om ruwe CSV-exports om te zetten in een duidelijk **voorraadshrinkage- & discrepancyrapport**:
 
-*   **E-commerce operations managers** die een *Shopify voorraadreconciliatiesjabloon* nodig hebben om digitale storefronts te synchroniseren met fysieke fulfilmentcentra.
-*   **Supply chain-directeuren** die een *alternatief voor 3PL-auditsoftware* zoeken om externe partners verantwoordelijk te houden voor contractuele shrinkagetarieven.
-*   **Voorraadcontrollers & magazijnmanagers** die maandelijkse *cyclustellingreconciliaties* uitvoeren over meerdere interne nodes.
-*   **Fractionele CFO's & financiële managers** die een nauwkeurige methode nodig hebben om *voorraadshrinkage en COGS-impact* te berekenen voor maandafsluitingen.
-*   **DTC-oprichters** die een executive overzicht van de voorraadgezondheid willen zonder te investeren in complexe ERP-integraties van zes cijfers.
+### Stap 1: Vul je SKU-stamlijst, unit-COGS & waarschuwingsdrempels in (`Config_Master`)
+Open het `Config_Master`-tabblad om je voorraadregels als baseline in te stellen:
+- Plak je **SKU-lijst** en de **kostprijs per verkochte eenheid (COGS)**.
+- Stel je aangepaste **waarschuwingsdrempels voor discrepanties** in (markeer bijvoorbeeld elke SKU met een verschil van meer dan `5 units` of meer dan `$100` aan ontbrekende voorraadwaarde).
 
-*Opmerking: Deze toolkit is **niet** ontworpen om realtime API's, ERP-systemen of live WMS-barcodescanning te vervangen. Het is een periodiek beslissingsondersteuningsraamwerk dat gebruikt wordt om die systemen te auditen.*
+*Bekijk het live:* zie hoe de stamconfiguratietabel nu werkt in de [gratis online 3PL voorraadreconciliatie-browsercalculator](https://hyvoid.github.io/multi-node-inventory-reconciliation/).
 
 ---
 
-## Over de maker
+### Stap 2: Kopieer en plak je ruwe Shopify-, WMS- & 3PL-CSV-exports
+Sla handmatige kolomopmaak en tekstopschoning over. Plak je ruwe voorraadexports direct in de drie invoertabbladen:
+- `Import_Shopify`: je geëxporteerde Shopify-productvoorraad CSV (voorraadniveaus van de webwinkel).
+- `Import_WMS`: je interne magazijnbeheer- of ERP-voorraadrapport.
+- `Import_3PL`: de fysieke cyclustelling of eindvoorraadrapportage van je fulfillmentpartner (compatibel met exports van ShipBob, ShipMonk, Flexport, Amazon MCF en eigen 3PL-portals).
+- **Nul handmatig formules slepen:** de voorgebouwde tabellen reinigen overtollige spaties, stemmen SKU-codes af en breiden automatisch uit wanneer je nieuwe rijen plakt.
 
-Ik bouw lichtgewicht operationele trackers en beslissingsondersteunende tools voor situaties waarin te veel bewegende delen zijn om in je hoofd te houden, maar te weinig complexiteit om nog een enterprisesysteem te rechtvaardigen.
+---
 
-De centrale vraag is eenvoudig: **Welke informatie moet op één gecentraliseerde plek staan voordat de volgende strategische supply chain-beslissing met vertrouwen genomen kan worden?**
+### Stap 3: Bekijk je shrinkagedashboard & Top 10 SKU's naar verlieswaarde (`Dashboard`)
+Schakel naar het `Dashboard`-tabblad om je voltooide auditresultaten te bekijken:
+- Zie de totale **shrinkagewaarde ($)**, de **netto unitvariantie** en de **systeem-tot-systeem nauwkeurigheidspercentages (%)** automatisch berekend.
+- Bekijk de lijst **Top 10 SKU's naar verlieswaarde** om te zien welke exacte producten een fysieke hertelling in het magazijn of een dringende voorraadcorrectie op Shopify nodig hebben.
 
-Deze Multi-Node Inventory Reconciliation-werkmap is één voorbeeld van die aanpak: terugkerende systeemoverstijgende voorraadvergelijkingen omzetten in een gestandaardiseerde analytische workflow die operationele discrepanties verbindt met financiële gevolgen.
+---
+
+### Stap 4: Download het ontgrendelde Excel-sjabloon voor maandelijkse audits met één klik
+Gebruik de gratis browsertool om vandaag nog je workflow te testen en directe voorraadgaten te ontdekken. Om je SKU-kostenbaselines lokaal op te slaan, terugkerende maandelijkse boekhoudafsluitingen uit te voeren en historische 3PL-claimlogboeken op te bouwen, download je de ontgrendelde `.xlsx`-spreadsheet.
+
+> 💡 **Waarom groeiende e-commerce merken dit Excel-sjabloon gebruiken in plaats van zelf te bouwen:**  
+> Rommelige SKU-strings over drie verschillende exports heen schoonmaken, niet-overeenkomende rijen afstemmen en voorraadvarianties wegen op unit-COGS vergt lastige spreadsheet-engineering. **In dit Excel-sjabloon is elke 3-weg matchregel, tekstnormalisator en automatisch bijwerkende formule al voor je gebouwd.**  
+> 
+> Je hoeft niet eens op celhoeken te dubbelklikken of formules naar beneden te slepen. Download de werkmap naar je computer, plak je maandelijkse Shopify- en 3PL-exports over de data van vorige maand en krijg een bijgewerkte financiële shrinkage-audit met één klik. Zelfs zonder technische spreadsheetachtergrond krijg je direct inzicht in je voorraadgezondheid — zodat je je kunt richten op marketing, bijbestellen van bestsellers en het afsluiten van verkopen tijdens de piekmaanden Q4 en Black Friday, terwijl een eenvoudig kopieer-en-plak-sjabloon de datareconciliatie afhandelt.  
+> 
+> 👉 **[Download vandaag het ontgrendelde Shopify & 3PL voorraadreconciliatie Excel-sjabloon (.xlsx) en automatiseer je voorraadaudits](https://www.theseusworkshop.com/l/ddongr?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=inventory-reconciliation-shrinkage)**
+
+---
+
+## De bedrijfslogica & methodiek: 4 verborgen voorraadblinde vlekken die dit Excel-sjabloon voor je oplost
+
+De meeste e-commerce merken verliezen duizenden dollars aan voorraadshrinkage en oververkopen, niet omdat ze vergeten voorraad te tellen, maar omdat standaard 2-weg controles en eenvoudige unit-spreadsheets verbergen waar de echte financiële schade ontstaat. Hier is hoe dit sjabloon je voorraad en cashflow in gewone taal beschermt:
+
+### 1. Alleen twee systemen vergelijken verbergt of je een IT-bug of magazijndiefstal hebt (3-weg voorraadtriangulatie)
+**De objectieve feiten:** als je alleen Shopify (100 units) vergelijkt met je 3PL (80 units), weet je dat 20 units ontbreken, maar je weet niet *waarom*. Die 20 units kunnen in niet-verzonden orders zitten omdat een API-webhook faalde, of 20 fysieke dozen kunnen via de achterdeur het magazijn uit zijn gelopen.  
+**Jouw directe voordeel:** door **Shopify (digitale webwinkel) + WMS (intern grootboek) + 3PL (fysieke schaptelling)** naast elkaar in één rij te leggen, isoleert het sjabloon het exacte breekpunt:
+- Als `Shopify ≠ WMS`, maar `WMS = 3PL`: je hebt een winkelsynchronisatie- of niet-verzonden-ordervertraging. Corrigeer je integratie-instellingen.
+- Als `Shopify = WMS`, maar `3PL < WMS`: fysieke voorraad is verloren gegaan, beschadigd of misgeteld in het fulfillmentcenter. Dien een 3PL-claim in.
+
+### 2. Ontbrekende units tellen in plaats van ontbrekende dollars verspilt magazijnarbeid (COGS-gewogen variantieranking)
+**De objectieve feiten:** een standaard cyclustellingsblad behandelt elke unit gelijk. Als je team discrepancies alleen op aantal units sorteert, zullen ze uren bestaan aan het hertellen van goedkope verpakkingsmaterialen terwijl ze dure producten negeren die stilletjes je winstmarge aantasten. Kijk hoe ruwe unaantallen magazijnteams misleiden vergeleken met COGS-gewogen shrinkage:
+
+```text
+SKU-A (Branded Poly-Mailer):   -50 Units Missing  ×  $0.20 Unit COGS  =   -$10.00 Financial Loss
+SKU-B (Wireless Headphones):    -4 Units Missing  × $115.00 Unit COGS =  -$460.00 Financial Loss
+
+```
+
+In een basale spreadsheet op unaantal lijkt `SKU-A` (-50 units) een noodgeval terwijl `SKU-B` (-4 units) een kleine afrondingsfout lijkt — terwijl `SKU-B` je bedrijf **46 keer meer geld** kost.
+
+**Jouw directe voordeel:** het sjabloon vermenigvuldigt elke unitdiscrepancie automatisch met de unit-COGS en rangschikt je **Top 10 SKU's naar verlieswaarde op dollarimpact**. Je team onderzoekt eerst het $460-verlies in plaats van $10 aan enveloppen na te jagen.
+
+### 3. 3PL fulfillmentcontracten hebben strikte claimdeadlines en shrinkageplafonds (gedocumenteerd SLA-claimbewijs)
+
+**De objectieve feiten:** bijna alle Third-Party Logistics (3PL)-contracten bevatten een ingebouwde "shrinkage-toelage" (meestal 0,5% tot 2,0% van het totale aantal behandelde units) en eisen dat handelaren binnen 15 tot 30 dagen na een cyclustelling SKU-voor-SKU-variantiebewijs indienen om in aanmerking te komen voor terugbetaling. Klachten die per e-mail worden verstuurd zonder gestructureerde variantielogboeken worden routinematig afgewezen door 3PL-accountmanagers.
+
+**Jouw directe voordeel:** het sjabloon berekent exacte **node-tot-node discrepantiepercentages** en genereert een overzichtelijke SKU-variantietabel met verwachte voorraad, fysieke telling, tekort aan units en COGS-waarde — zodat je kant-en-klare documentatie hebt om geld terug te vorderen van je 3PL.
+
+### 4. "Spookvoorraad" op Shopify verbrandt betaalde advertentiebudgetten en veroorzaakt chargebacks (fantomenvoorraaddetectie)
+
+**De objectieve feiten:** wanneer je Shopify-winkel denkt dat je 50 units op voorraad hebt, blijven je Meta- en Google-shoppingadvertenties geld uitgeven om verkeer naar die productpagina te trekken. Als je 3PL in werkelijkheid 0 units op de schap heeft ("spookvoorraad"), leidt elke nieuwe klantorder tot een fulfillmentvertraging, een handmatige annulering, verloren betaalverwerkingskosten en boze klantensupporttickets.
+
+**Jouw directe voordeel:** het sjabloon markeert elke SKU waar webwinkelbeschikbaarheid de fysieke magazijnvoorraad overschrijdt zodat je Shopify-voorraadhoeveelheden kunt aanpassen vóór het oververkopen tijdens drukke verkoop events.
+
+---
+
+## Handmatige voorraadspreadsheets (`VLOOKUP`) vs. dit geautomatiseerde Shopify & 3PL reconcilietiesjabloon
+
+| Magazijn- & boekhoudkundige vergelijkingsfactor | Handmatige Excel-sheets (`VLOOKUP` / `INDEX-MATCH` vanaf nul) | Gestandaardiseerd multi-node voorraadreconcilietiesjabloon (deze tool) |
+| --- | --- | --- |
+| **Voorraadafstemming over 3 systemen (`Shopify` + `WMS` + `3PL`)** | Medewerkers stikken elke maand handmatig drie losse CSV-bestanden aan elkaar, met risico op kapotte celverwijzingen en overgeslagen SKU's. | De voorgebouwde **3-weg matching-engine** stemt Shopify-, WMS- en 3PL-hoeveelheden automatisch af zodra je je exports plakt. |
+| **Rommelige CSV-opmaak & SKU-mismatches** | Extra spaties aan het einde, voorloopnullen en hoofdlettergevoelige SKU-codes veroorzaken valse `#N/A`-fouten over duizenden rijen. | Een ingebouwde **tekstnormalisatielaag** reinigt witruimte en standaardiseert SKU-strings voordat voorraadverschillen worden berekend. |
+| **Financiële shrinkagewaardering (`COGS-afboeking`)** | Rapporten tonen alleen ontbrekende unaantallen, waardoor boekhouders productkosten handmatig moeten opzoeken bij de maandafsluiting. | Een ingebouwde **SKU-kostenmatrix** zet elk unietekort om in exacte **dollarschrinkage-exposure ($)** voor boekhoudkundige boeking. |
+| **Uitzonderingsfiltering (`Top verlies-SKU's`)** | Managers scrollen door meer dan 5.000 overeenkomende rijen om te ontdekken welke producten gevaarlijke voorraadgaten hebben. | Het **geautomatiseerde uitzonderingsdashboard** filtert normale rijen uit en rangschikt automatisch de **Top 10 SKU's met de hoogste dollarverlies**. |
+| **3PL SLA-terugvorderingsdocumentatie** | Ontbrekende magazijnunits worden informeel besproken via e-mail zonder historische nauwkeurigheidspercentages of dollartotalen. | Levert een auditklare **3PL-variantie- & discrepancypercentage-ledger** om formele SLA-credits en terugvorderingsclaims te onderbouwen. |
+
+---
+
+## Voor wie is dit: e-commerce rollen, voorraadgebruiksscenario's & spreadsheetworkflows
+
+Deze toolkit overbrugt de kloof tussen fysieke magazijnplanken en e-commerce financiële rapportages. Hij is gebouwd voor **groeiende DTC-merken, multichannel Shopify-verkopers, 3PL-gebruikers en e-commerce financeteams** die betrouwbare voorraadbeheersing willen zonder $30.000+ per jaar te betalen voor een enterprise ERP:
+
+* **Shopify-winkeleigenaren & DTC-merkoprichters (`Shopify voorraadreconciliatie Excel-sjabloon`):** spot spookvoorraad en ontbrekende magazijnvoorraad binnen enkele minuten zonder een data-analist in te huren of complexe spreadsheetformules te leren.
+* **E-commerce operations- & fulfillmentmanagers (`3PL voorraaddiscrepantie- & SLA-audit spreadsheet`):** houd externe fulfillmentcentra (zoals ShipBob, ShipMonk of regionale 3PL's) verantwoordelijk door maandelijkse shrinkagepercentages te volgen tegen contractuele SLA-plafonds.
+* **Magazijnmanagers & voorraadbeheerders (`plug-and-play cyclustelling variantiecalculator`):** reconcileer fysieke bin-tellingen met WMS-grootboekregistraties na wekelijkse of maandelijkse cyclustellingen, met prioriteit voor hertellingen op basis van de hoogste dollarwaarde die op het spel staat.
+* **E-commerce boekhouders & fractional CFO's (`voorraadshrinkage- & COGS-afboekingsmodel`):** bereken exacte eindvoorraadwaardering-aanpassingen en maandelijkse COGS-shrinkage-afboekingen voor QuickBooks Online, Xero of NetSuite.
+* **Multichannel Amazon-, Walmart- & Shopify-verkopers (`multi-magazijn voorraadvergelijkingsblad`):** audit voorraaddistributie en niet-gekoppelde SKU-hoeveelheden over interne magazijnen, 3PL-nodes en online verkoopkanalen vanuit één bestand.
+
+*Opmerking: deze Excel-werkmap vervangt geen live barcodescanners, realtime API-voorraadsynchronisatie-apps of je WMS. Het fungeert als je onafhankelijke **audit- en reconciliatielaag** om de synchronisatiefouten en fysieke shrinkage te vinden die geautomatiseerde software mist.*
+
+---
+
+## Praktijksenario's: hoe je veelvoorkomende Shopify- & 3PL-voorraadproblemen oplost
+
+Als je operations- of financeteam een van deze terugkerende voorraadhoofdpijn tegenkomt, is deze spreadsheet zo gebouwd dat ze uit de doos worden opgelost:
+
+* **Hoe je oververkopen voorkomt tijdens Black Friday / Cyber Monday (Q4 hoogseizoen):** Shopify toont 100 beschikbare units, maar je 3PL heeft er slechts 20 op de schap. Voer deze reconciliatie wekelijks uit tijdens Q4 om "spookvoorraad" te vangen en je winkeltellingen te synchroniseren voordat klanten uitverkochte artikelen kopen.
+* **Hoe je verloren 3PL-voorraad bewijst en SLA-terugbetalingen claimt:** je fulfillmentpartner verliest high-ticket SKU's boven zijn contractuele shrinkage-toelage van 1,5%. Plak je WMS-verzendlogboeken en de fysieke telling van de 3PL in het sjabloon om een gedetailleerd dollarverliesrapport voor je terugvorderingsclaim te genereren.
+* **Hoe je maandelijkse voorraadshrinkage berekent voor e-commerce boekhouding:** je boekhouder heeft een exact dollarcijfer nodig voor verloren of beschadigde voorraad om de maandelijkse P&L af te sluiten. Gebruik het COGS-gewogen dashboards totaal om in enkele minuten nauwkeurige voorraadafboekingsjournaalposten te boeken.
+* **Hoe je rommelige magazijn-CSV-exports reconcileert zonder kapotte `VLOOKUP`-formules:** verschillende systemen exporteren SKU-codes met extra spaties of inconsistente opmaak. Drop de ruwe exports in de invoertabbladen en laat het sjabloon elke SKU automatisch afstemmen en vergelijken.
+
+---
+
+## Over Theseus Workshop
+
+**Theseus Workshop** bouwt plug-and-play Microsoft Excel-modellen en browsergebaseerde beslissingstools voor operatoren die vandaag duidelijke, betrouwbare cijfers nodig hebben — zonder opgeblazen enterprise-software of complexe spreadsheetprogrammering.
+
+Elke tool is ontworpen rond één praktische vraag:
+
+> **"Welke exacte operationele en financiële cijfers moeten in één voorgebouwde tabel staan zodat je volgende zakelijke beslissing seconden in plaats van uren kost?"**
+
+Als je wilt stoppen met worstelen met kapotte `VLOOKUP`-sheets, verrassingsvoorraaduitval en ongecompenseerde 3PL-vooraadverliezen, pak dan hieronder het volledige Excel-sjabloon of verken onze complete bibliotheek met operationele spreadsheets:
+
+* 📥 **Download dit voorraadreconcilietiesjabloon:** [Download het ontgrendelde Shopify & 3PL voorraadreconciliatie Excel-sjabloon (.xlsx)](https://www.theseusworkshop.com/l/ddongr?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=inventory-reconciliation-shrinkage)
+* 🌐 **Test de gratis webcalculator:** [Open de interactieve 3PL voorraadreconciliatie-browsersimulator](https://hyvoid.github.io/MULTI-NODE-INVENTORY-RECONCILIATION/)
+* 🧰 **Verken alle kant-en-klare Excel-modellen & businesskits:** [Bezoek de officiële Theseus Workshop Store op TheseusWorkshop.com](https://www.google.com/search?q=https://www.theseusworkshop.com%3Futm_source%3Dgithub%26utm_medium%3DGitHub%2520README%26utm_campaign%3Dreadme%2520new%2520launch%26utm_content%3Dinventory-readme-store-link)
+
+---
 
 
 ## Technische details
@@ -129,7 +178,7 @@ Deze Multi-Node Inventory Reconciliation-werkmap is één voorbeeld van die aanp
 
 ### Werkmaparchitectuur
 
-De werkmap is bewust gestructureerd als een **data-schoonmaak- en reconciliatie-engine + beslissingsdashboard voor financieel verlies**, en niet als een permanente voorraaddatabase. Elke reconciliecyclus kan de vorige importset overschrijven of als aparte werkmap worden opgeslagen, waardoor het bestand lichtgewicht blijft en onnodige database- of macro-afhankelijkheden worden vermeden.
+De werkmap is bewust gestructureerd als een **data-opschoon- en reconciliatie-engine + beslissingsdashboard voor financieel verlies**, en niet als een permanente voorraaddatabase. Elke reconciliecyclus kan de vorige importset overschrijven of als aparte werkmap worden opgeslagen, waardoor het bestand lichtgewicht blijft en onnodige database- of macro-afhankelijkheden worden vermeden.
 
 De architectuur volgt een eenvoudige:
 
@@ -169,8 +218,8 @@ De werkmap is verdeeld in zes functionele werkbladen:
 
 | Werkblad         | Laag          | Verantwoordelijkheid                                                      | Primaire gebruiker      |
 | ---------------- | ------------- | ------------------------------------------------------------------------- | ---------------------- |
-| `Dashboard`      | Beslissing    | KPI-samenvatting, verliesblootstelling, nodevergelijking, Top 10 uitzonderingen | CEO / Management        |
-| `Config_Master`  | Configuratie  | Standaard SKU-lijst, productinformatie, kostprijs, discrepantiedrempels   | Operations / Finance    |
+| `Dashboard`      | Beslissing    | KPI-samenvatting, verliesblootstelling, nodevergelijking, Top 10 uitzonderingen            | CEO / Management        |
+| `Config_Master`  | Configuratie  | Standaard SKU-lijst, productinformatie, kostprijs, discrepantiedrempels | Operations / Finance   |
 | `Import_Shopify` | Input         | Ruwe Shopify-voorraadexport                                               | Operations              |
 | `Import_WMS`     | Input         | Ruwe interne WMS-voorraadexport                                           | Magazijn / Operations   |
 | `Import_3PL`     | Input         | Ruwe 3PL fysieke voorraadexport                                           | 3PL / Operations        |
@@ -216,7 +265,7 @@ Dit is belangrijk omdat een SKU als:
 ABC-001
 ```
 
-niet een valse uitzondering mag worden simpelweg omdat een andere export bevat:
+geen valse uitzondering mag worden simpelweg omdat een andere export bevat:
 
 ```text
  abc-001
@@ -268,8 +317,8 @@ De primaire KPI-laag bevat:
 
 * Totale hoeveelheidsvariantie
 * Totale geschatte financiële verlies
-* 3PL-discrepantietarief
-* Intern magazijn-discrepantietarief
+* 3PL-discrepantiepercentage
+* Intern magazijn-discrepantiepercentage
 
 De visuele laag biedt vervolgens:
 
@@ -334,7 +383,7 @@ Only when:
 Snapshot_A_Time = Snapshot_B_Time
 ```
 
-Een discrepantie mag pas als financieel verlies worden geïnterpreteerd wanneer de vergelijkingsbasis zelf geldig is.
+Een discrepancy mag pas als financieel verlies worden geïnterpreteerd wanneer de vergelijkingsbasis zelf geldig is.
 
 </details>
 
@@ -439,7 +488,7 @@ De geïmporteerde snapshots rapporteren:
 
 | Bron    | Hoeveelheid |
 | ------- | -------: |
-| Shopify |    1.000 |
+| Shopify |    1,000 |
 | WMS     |      992 |
 | 3PL     |      970 |
 
@@ -469,7 +518,7 @@ Als de 3PL-variantie van 22 stuks onverklaard blijft na het controleren van verz
 
 De managementimplicatie verschilt daarom van een generieke voorraadwaarschuwing.
 
-De volgende actie is niet om elke SKU gelijk te inspecteren. De operator moet eerst de **3PL-zijuitzondering onderzoeken**, verifiëren of de variantie fysiek verlies, schade, timing of een rapportageprobleem vertegenwoordigt, en vervolgens bepalen of de discrepantie de contractuele of interne tolerantie van het bedrijf overschrijdt.
+De volgende actie is niet om elke SKU gelijk te inspecteren. De operator moet eerst de **3PL-zijuitzondering onderzoeken**, verifiëren of de variantie fysiek verlies, schade, timing of een rapportageprobleem vertegenwoordigt, en vervolgens bepalen of de discrepancy de contractuele of interne tolerantie van het bedrijf overschrijdt.
 
 Het dashboard is ontworpen om deze prioritering zichtbaar te maken: het management kan de totale financiële blootstelling, de verliesverdeling tussen nodes en de SKU-uitzonderingen met de hoogste waarde zien zonder handmatig de ruwe exports te doorzoeken.
 
@@ -477,7 +526,7 @@ De tool ondersteunt daarom een reeks van:
 
 **reconciliatie → uitzonderingsisolatie → financiële kwantificering → operationeel onderzoek → mogelijke claim of procescorrectie.**
 
-De tool zelf bepaalt niet of een discrepantie juridisch verhaalbaar is. Dat blijft een management- en contractbeslissing.
+De tool zelf bepaalt niet of een discrepancy juridisch verhaalbaar is. Dat blijft een management- en contractbeslissing.
 
 ### Formuliereferentie
 
@@ -574,9 +623,9 @@ Discrepancy Rate
 = Absolute Variance ÷ Reference Inventory
 ```
 
-Het resulterende tarief kan worden vergeleken met de geconfigureerde waarschuwings- of tolerantiedrempel.
+Het resulterende percentage kan worden vergeleken met de geconfigureerde waarschuwings- of tolerantiedrempel.
 
-Het bronontwerp voorziet dat `Config_Master` de discrepantiedrempels bijhoudt en dat voorwaardelijke opmaak rijen markeert waarvan de hoeveelheid of het discrepantietarief de geconfigureerde limiet overschrijdt.
+Het bronontwerp voorziet dat `Config_Master` de discrepantiedrempels bijhoudt en dat voorwaardelijke opmaak rijen markeert waarvan de hoeveelheid of het discrepantiepercentage de geconfigureerde limiet overschrijdt.
 
 </details>
 
@@ -591,7 +640,7 @@ De reconciliatie-engine hangt af van een klein aantal controles die gerespecteer
 | **Kostprijs per eenheid**                    | Moet in `Config_Master` bestaan voor financiële waardering.                                                         | Hoeveelheidsvariantie kan zichtbaar blijven, maar financiële blootstelling kan zonder kosten niet betrouwbaar worden gewaardeerd.                    |
 | **Snapshot-afsnijmoment**             | Shopify-, WMS- en 3PL-data moeten hetzelfde tijdstip vertegenwoordigen.                                               | Verschillende tijdstempels kunnen valse variantie creëren en vereisen herexport of aanpassing.                                       |
 | **Geïmporteerde brongegevens**         | Ruwe exports moeten consistent in de aangewezen importzones worden geplakt.                                  | Structurele of bronformaat-anomalieën moeten worden gecorrigeerd voordat de resulterende uitzonderingen worden geïnterpreteerd.                   |
-| **Discrepantiedrempel**        | Hoeveelheids-/tariefdrempels moeten in de configuratie worden bijgehouden in plaats van hardgecodeerd in individuele uitvoeren. | Uitzonderingen die de drempel overschrijden worden voor onderzoek gemarkeerd.                                                      |
+| **Discrepantiedrempel**        | Hoeveelheids-/percentage drempels moeten in de configuratie worden bijgehouden in plaats van hardgecodeerd in individuele uitvoeren. | Uitzonderingen die de drempel overschrijden worden voor onderzoek gemarkeerd.                                                      |
 | **3PL-tolerantie / SLA**          | Contractuele verlostolerantie moet worden meegewogen bij de beslissing of een uitzondering claim-waardig is.              | De werkmap levert het bewijs; het management bepaalt of een contractuele claim wordt gestart.                    |
 | **Retourtiming**               | Retourzendingen die door een 3PL worden geregistreerd en terugbetalingen in Shopify kunnen op verschillende momenten plaatsvinden.                        | Kortetermijnverschillen mogen niet automatisch als permanente shrinkage worden geïnterpreteerd.                                     |
 | **Historische SKU-naamgeving**        | Verouderde naamgevingsinconsistenties moeten worden genormaliseerd of gemapt.                                                    | Niet-gemapte historische SKU's moeten zichtbaar blijven als datakwaliteitsuitzonderingen.                                                |
@@ -670,7 +719,7 @@ Zij kan niet:
 * voorkomen dat een magazijnmedewerker fysiek een artikel verzendt wanneer de voorraad ontoereikend is;
 * een WMS, ERP of voorraadbeheersysteem vervangen;
 * 3PL-cyclustellingsprocedures afdwingen;
-* automatisch bepalen of een discrepantie contractueel verhaalbaar is;
+* automatisch bepalen of een discrepancy contractueel verhaalbaar is;
 * realtime GPS-tracking van voorraad in transit bieden;
 * historische SKU-stamdataproblemen oplossen zonder een passende mappingbeslissing.
 
@@ -678,7 +727,7 @@ Deze grenzen zijn expliciet in het bronontwerp. Gestandaardiseerde reconciliatie
 
 Er zijn ook belangrijke interpretatiebeperkingen.
 
-**Een hoeveelheidsverschil is niet automatisch shrinkage.** Retourzendingen kunnen door een 3PL op een ander moment worden geregistreerd dan de bijbehorende Shopify-terugbetaling, en inconsistente snapshottiming kan tijdelijke verschillen creëren. De operator moet de zakelijke context valideren voordat een discrepantie als permanent verlies wordt geclassificeerd.
+**Een hoeveelheidsverschil is niet automatisch shrinkage.** Retourzendingen kunnen door een 3PL op een ander moment worden geregistreerd dan de bijbehorende Shopify-terugbetaling, en inconsistente snapshottiming kan tijdelijke verschillen creëren. De operator moet de zakelijke context valideren voordat een discrepancy als permanent verlies wordt geclassificeerd.
 
 **Het financiële verliescijfer is een schatting, geen boekhoudpost.** Het hangt af van de geconfigureerde SKU-kostprijs en de interpretatie van de onderliggende hoeveelheidsverschillen.
 
@@ -693,10 +742,12 @@ De werkmap moet daarom worden gebruikt als een **feitenvaststellings- en priorit
 
 Een collectie lichtgewicht Excel beslissingsondersteunende tools die operationele beheersing, reconciliatie, winstgevendheid, voorraad en financiële analyse dekken.
 
-* **Inventory Planning & Reorder Control** — vraag, aanvulling, voorraadblootstelling en inkoopbeslissingen.
-* **Order-Level Profit Engine** — omzet, variabele kosten, verzendallocatie en winstgevendheid per order.
-* **Single-Project Construction Control** — projectbudget, verbintenissen, projectkosten en projectwinstgevendheid.
-* **Contractor Operations & Profitability Management System** — Lead → Offerte → Project → Arbeid & Materialen → Projectkosten → Winst → Klantgeschiedenis workflow.
+* **[inventory-planning-reorder-point-excel](https://github.com/HyVoid/inventory-planning-reorder-point-excel)** — Welke inkoopbeslissing moet vandaag worden genomen gegeven vraagtrends levertijden en kasbeperkingen? — Prognose voorraadbehoeften door vraagsignalen, levertijdrisico, inkoopadviezen en werkkapitaalexposure te combineren.
+* **[Retail-SKU-Concentration-Assortment-Diagnostic-Console](https://github.com/HyVoid/Retail-SKU-Concentration-Assortment-Diagnostic-Console)** — Welke producten domineren voorraadrisico of verwateren assortimentkwaliteit? — Identificeer SKU-concentratierisico en assortimentefficiëntie in retailproductcatalogi.
+* **[Retail-and-Maquila-Inventory-Ledger](https://github.com/HyVoid/Retail-and-Maquila-Inventory-Ledger)** — Waar beweegt voorraad zich tussen retail- en maquilaoperaties? — Volg voorraadbewegingen, verwerkingsverliezen en voorraadexposure over fabrieken, magazijnen en winkels.
+* **[Universal-3D-Cargo-Loading-Optimization-Simulator](https://github.com/HyVoid/Universal-3D-Cargo-Loading-Optimization-Simulator)** — Hoe moet cargo worden geladen om verspilde ruimte en operationele wrijving te verminderen? — Simuleer 3D-laadconfiguraties om contain capaciteit en verzendefficiëntie te maximaliseren.
+* **[Cross-Border-DTC-Inventory-Governance-Console](https://github.com/HyVoid/Cross-Border-DTC-Inventory-Governance-Console)** — Wat is de echte inkoopvraag na aftrek van pre-order verplichtingen en verwachte retouren? — Reconstrueer echte vraagsignalen door pre-order verplichtingen en retourgedrag te isoleren van ruwe verkoopdata.
+* **[inventory-allocation-fulfillment-excel](https://github.com/HyVoid/inventory-allocation-fulfillment-excel)** — Kan elke klantorder daadwerkelijk op tijd worden geleverd gegeven fysieke voorraad, reserveringen, containers in transit en openstaande PO's op al onze locaties? — Bereken beschikbare-tot-te-beloven hoeveelheden en netto inkoopbehoeften door fysieke voorraad, orderreserveringen, voorraad in transit en open inkooporders over meerdere locaties te reconciliëren.
 
 ## Licentie
 
@@ -705,3 +756,4 @@ Dit project wordt uitgegeven onder de **Apache-licentie 2.0**.
 Je mag het project gebruiken, wijzigen, distribueren en aanpassen onder de voorwaarden van de Apache-licentie 2.0.
 
 Zie het licentiebestand in de repository voor de volledige licentietekst.
+
